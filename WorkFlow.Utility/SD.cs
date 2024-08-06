@@ -1,4 +1,4 @@
-﻿namespace WorkFlowWeb.Utility;
+﻿namespace WorkFlow.Utility;
 
 public static class SD
 {

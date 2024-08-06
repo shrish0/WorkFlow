@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkFlowWeb", "WorkFlowWeb.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkFlow.Data", "..\WorkFlow.Data\WorkFlow.Data.csproj", "{1D3CB83F-9BAD-4073-96D8-C44A6906E3C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkFlow.Models", "..\WorkFlow.Models\WorkFlow.Models.csproj", "{DEC9F5FA-C1BF-4AFB-A5C2-5D2D9AADFB6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkFlow.Utility", "..\WorkFlow.Utility\WorkFlow.Utility.csproj", "{52026A81-D451-4961-B70B-8683F6BBE2FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{1D3CB83F-9BAD-4073-96D8-C44A6906E3C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D3CB83F-9BAD-4073-96D8-C44A6906E3C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D3CB83F-9BAD-4073-96D8-C44A6906E3C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEC9F5FA-C1BF-4AFB-A5C2-5D2D9AADFB6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC9F5FA-C1BF-4AFB-A5C2-5D2D9AADFB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC9F5FA-C1BF-4AFB-A5C2-5D2D9AADFB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC9F5FA-C1BF-4AFB-A5C2-5D2D9AADFB6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52026A81-D451-4961-B70B-8683F6BBE2FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52026A81-D451-4961-B70B-8683F6BBE2FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52026A81-D451-4961-B70B-8683F6BBE2FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52026A81-D451-4961-B70B-8683F6BBE2FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

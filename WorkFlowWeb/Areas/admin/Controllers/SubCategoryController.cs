@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using WorkFlowWeb.Data.DataAccess;
+using WorkFlow.Data.DataAccess;
 using WorkFlowWeb.Migrations;
-using WorkFlowWeb.Models;
+using WorkFlow.Models;
 using WorkFlowWeb.ViewModels;
 
 namespace WorkFlowWeb.Areas.Admin.Controllers

@@ -2,8 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using WorkFlow.Data.DataAccess;
-using WorkFlowWeb.Models;
-using WorkFlowWeb.Utility;
+using WorkFlow.Models;
+using WorkFlow.Utility;
 using WorkFlowWeb.Store;
 
 var builder = WebApplication.CreateBuilder(args);

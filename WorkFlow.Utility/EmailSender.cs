@@ -4,7 +4,7 @@ using MailKit.Net.Smtp;
 using System;
 using System.Threading.Tasks;
 
-namespace WorkFlowWeb.Utility
+namespace WorkFlow.Utility
 {
     public class EmailSender : IEmailSender
     {

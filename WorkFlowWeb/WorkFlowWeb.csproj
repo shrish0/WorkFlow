@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Areas\admin\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Update="Views\Shared\_Notification.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -29,6 +33,8 @@
   </ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\WorkFlow.Data\WorkFlow.Data.csproj" />
+		<ProjectReference Include="..\WorkFlow.Models\WorkFlow.Models.csproj" />
+		<ProjectReference Include="..\WorkFlow.Utility\WorkFlow.Utility.csproj" />
 	</ItemGroup>
 
 </Project>
