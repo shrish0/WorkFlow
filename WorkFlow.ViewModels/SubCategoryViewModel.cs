@@ -1,5 +1,5 @@
 ﻿// ViewModels/SubCategoryViewModel.cs
-namespace WorkFlowWeb.ViewModels
+namespace WorkFlow.ViewModels
 {
     public class SubCategoryViewModel
     {
