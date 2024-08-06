@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace WorkFlowWeb.Models
+namespace WorkFlow.Models
 {
     public class Category
     {

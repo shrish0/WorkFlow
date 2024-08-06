@@ -1,4 +1,4 @@
-namespace WorkFlowWeb.Models
+namespace WorkFlow.Models
 {
     public class ErrorViewModel
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WorkFlowWeb.Models
+namespace WorkFlow.Models
 {
     public class SubCategory
     {
