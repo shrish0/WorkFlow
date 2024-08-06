@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WorkFlowWeb.ViewModels
+namespace WorkFlow.ViewModels
 {
     public class UserViewModel
     {

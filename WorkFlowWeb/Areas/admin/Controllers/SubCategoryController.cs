@@ -8,7 +8,7 @@ using System.Security.Claims;
 using WorkFlow.Data.DataAccess;
 using WorkFlowWeb.Migrations;
 using WorkFlow.Models;
-using WorkFlowWeb.ViewModels;
+using WorkFlow.ViewModels;
 
 namespace WorkFlowWeb.Areas.Admin.Controllers
 {

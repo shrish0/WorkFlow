@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkFlow.Data.DataAccess;
 using WorkFlow.Models;
-using WorkFlowWeb.ViewModels;
+using WorkFlow.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
 

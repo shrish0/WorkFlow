@@ -1,0 +1,13 @@
+H:\WorkFlow\WorkFlow.Models\bin\Debug\net8.0\WorkFlow.Models.deps.json
+H:\WorkFlow\WorkFlow.Models\bin\Debug\net8.0\WorkFlow.Models.dll
+H:\WorkFlow\WorkFlow.Models\bin\Debug\net8.0\WorkFlow.Models.pdb
+H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.csproj.AssemblyReference.cache
+H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.GeneratedMSBuildEditorConfig.editorconfig
+H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.AssemblyInfoInputs.cache
+H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.AssemblyInfo.cs
+H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.csproj.CoreCompileInputs.cache
+H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.sourcelink.json
+H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.dll
+H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\refint\WorkFlow.Models.dll
+H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.pdb
+H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\ref\WorkFlow.Models.dll

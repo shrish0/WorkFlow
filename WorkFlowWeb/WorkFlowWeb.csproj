@@ -35,6 +35,7 @@
 		<ProjectReference Include="..\WorkFlow.Data\WorkFlow.Data.csproj" />
 		<ProjectReference Include="..\WorkFlow.Models\WorkFlow.Models.csproj" />
 		<ProjectReference Include="..\WorkFlow.Utility\WorkFlow.Utility.csproj" />
+		<ProjectReference Include="..\WorkFlow.ViewModels\WorkFlow.ViewModels.csproj" />
 	</ItemGroup>
 
 </Project>
