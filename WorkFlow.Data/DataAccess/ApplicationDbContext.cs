@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Emit;
-using WorkFlowWeb.Models;
+using WorkFlow.Models;
 
-namespace WorkFlowWeb.Data.DataAccess
+namespace WorkFlow.Data.DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

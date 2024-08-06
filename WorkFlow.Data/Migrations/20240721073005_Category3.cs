@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace WorkFlowWeb.Migrations
+namespace WorkFlow.Migrations
 {
     /// <inheritdoc />
     public partial class Category3 : Migration

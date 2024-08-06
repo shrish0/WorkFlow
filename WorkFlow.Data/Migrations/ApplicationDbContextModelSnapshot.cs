@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WorkFlowWeb.Data.DataAccess;
+using WorkFlow.Data.DataAccess;
 
 #nullable disable
 
-namespace WorkFlowWeb.Migrations
+namespace WorkFlow.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
