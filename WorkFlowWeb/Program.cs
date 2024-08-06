@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using WorkFlow.Data.DataAccess;
 using WorkFlow.Models;
 using WorkFlow.Utility;
-using WorkFlowWeb.Store;
+using WorkFlow.Stores;
 
 var builder = WebApplication.CreateBuilder(args);
 
