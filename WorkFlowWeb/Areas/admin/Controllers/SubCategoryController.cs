@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using WorkFlow.Data.DataAccess;
-using WorkFlowWeb.Migrations;
+using WorkFlow.Data.Migrations;
 using WorkFlow.Models;
 using WorkFlow.ViewModels;
 
