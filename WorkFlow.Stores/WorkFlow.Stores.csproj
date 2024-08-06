@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WorkFlow.Data\WorkFlow.Data.csproj" />
+    <ProjectReference Include="..\WorkFlow.Models\WorkFlow.Models.csproj" />
+  </ItemGroup>
+
 </Project>

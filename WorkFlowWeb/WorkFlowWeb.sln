@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkFlow.Utility", "..\Work
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkFlow.ViewModels", "..\WorkFlow.ViewModels\WorkFlow.ViewModels.csproj", "{27BFD067-0DE9-46CF-A29F-198BF884F19B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkFlow.Stores", "..\WorkFlow.Stores\WorkFlow.Stores.csproj", "{91F30DCE-B8E6-45D2-A9AF-DBB15D144FCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{27BFD067-0DE9-46CF-A29F-198BF884F19B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27BFD067-0DE9-46CF-A29F-198BF884F19B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27BFD067-0DE9-46CF-A29F-198BF884F19B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F30DCE-B8E6-45D2-A9AF-DBB15D144FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F30DCE-B8E6-45D2-A9AF-DBB15D144FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F30DCE-B8E6-45D2-A9AF-DBB15D144FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F30DCE-B8E6-45D2-A9AF-DBB15D144FCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

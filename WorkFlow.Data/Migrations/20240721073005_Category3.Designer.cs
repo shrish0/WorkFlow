@@ -9,11 +9,11 @@ using WorkFlow.Data.DataAccess;
 
 #nullable disable
 
-namespace WorkFlowWeb.Migrations
+namespace WorkFlow.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240721191612_subcategory")]
-    partial class subcategory
+    [Migration("20240721073005_Category3")]
+    partial class Category3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -329,6 +329,7 @@ namespace WorkFlowWeb.Migrations
                         .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("CreatedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
@@ -336,6 +337,7 @@ namespace WorkFlowWeb.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InactivatedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -343,8 +345,12 @@ namespace WorkFlowWeb.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
-                    b.Property<DateTime>("ModifiedAt")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SubCategoryId");
 

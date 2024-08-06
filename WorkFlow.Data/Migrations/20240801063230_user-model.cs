@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace WorkFlowWeb.Migrations
+namespace WorkFlow.Data.Migrations
 {
     /// <inheritdoc />
     public partial class usermodel : Migration

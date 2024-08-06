@@ -9,7 +9,7 @@ using WorkFlow.Data.DataAccess;
 
 #nullable disable
 
-namespace WorkFlowWeb.Migrations
+namespace WorkFlow.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240801063230_user-model")]
