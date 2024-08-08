@@ -10,3 +10,7 @@ H:\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.dll
 H:\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\refint\WorkFlow.ViewModels.dll
 H:\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.pdb
 H:\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\ref\WorkFlow.ViewModels.dll
+H:\WorkFlow\WorkFlow.ViewModels\bin\Debug\net8.0\WorkFlow.Models.dll
+H:\WorkFlow\WorkFlow.ViewModels\bin\Debug\net8.0\WorkFlow.Models.pdb
+H:\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.csproj.AssemblyReference.cache
+H:\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.E9CE3DE4.Up2Date

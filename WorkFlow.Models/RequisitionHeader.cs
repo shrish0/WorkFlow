@@ -6,7 +6,7 @@ namespace WorkFlow.Models
 {
     public class RequisitionHeader
     {
-        public int RequisitionId { get; set; }
+        public string RequisitionId { get; set; }
 
         [Required]
         public int CategoryId { get; set; }

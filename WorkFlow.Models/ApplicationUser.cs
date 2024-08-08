@@ -18,6 +18,7 @@ namespace WorkFlow.Models
         public DateTime Modified { get; set; }
         public string? CreatedBy { get; set; }
         public string ApplicationUserId { get; set; }
+        public string ClearanceLevel { get; set; } = "Cl01";
 
     }
 }

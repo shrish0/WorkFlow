@@ -6,9 +6,11 @@ namespace WorkFlow.Models
 {
     public class RequisitionBody
     {
+        [Required]
+        public string RequisitionId { get; set; }
 
-
-        public int RequisitionId { get; set; }
+        [ForeignKey("RequisitionId")]
+        public RequisitionHeader? RequisitionHeader { get; set; }
 
         [Required]
         public string Subject { get; set; }
@@ -16,19 +18,6 @@ namespace WorkFlow.Models
         public string Description { get; set; }
 
         [Required]
-        public int CategoryId { get; set; }
-
-        
-        public Category? Category { get; set; }
-
-        [Required]
-        public int SubCategoryId { get; set; }
-
-        [ForeignKey("SubCategoryId")]
-        public SubCategory? SubCategory { get; set; }
-
-        public string? CreatedBy { get; set; }
-
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public bool hasAttachment { get; set; }
     }
 }

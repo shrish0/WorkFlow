@@ -37,7 +37,16 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
+            var users = await _context.ApplicationUsers.ToListAsync();
+            var currentUserId = _userManager.GetUserId(User); // Get current logged-in user's ID
+
+            var model = new UserListViewModel
+            {
+                Users = users,
+                CurrentUserId = currentUserId
+            };
+
+            return View(model);
         }
 
         public async Task<IActionResult> Details(string id)
@@ -139,7 +148,7 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,FirstName,LastName,Address,Email,PhoneNumber")] ApplicationUser applicationUser)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,FirstName,LastName,Address,Email,PhoneNumber,ClearanceLevel,ApplicationUserId")] ApplicationUser applicationUser)
         {
             if (id != applicationUser.Id)
             {
@@ -150,8 +159,22 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
             {
                 try
                 {
-                    applicationUser.Modified = DateTime.Now;
-                    _context.Update(applicationUser);
+                    var userToUpdate = await _context.Users.FindAsync(id);
+                    if (userToUpdate == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Update the fields manually
+                    userToUpdate.FirstName = applicationUser.FirstName;
+                    userToUpdate.LastName = applicationUser.LastName;
+                    userToUpdate.Address = applicationUser.Address;
+                    userToUpdate.Email = applicationUser.Email;
+                    userToUpdate.PhoneNumber = applicationUser.PhoneNumber;
+                    userToUpdate.ClearanceLevel = applicationUser.ClearanceLevel;
+                    userToUpdate.Modified = DateTime.Now;
+
+                    _context.Update(userToUpdate);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -169,6 +192,7 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
             }
             return View(applicationUser);
         }
+
 
         public async Task<IActionResult> Delete(string id)
         {

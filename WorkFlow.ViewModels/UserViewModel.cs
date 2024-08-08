@@ -23,6 +23,8 @@ namespace WorkFlow.ViewModels
         public string PhoneNumber { get; set; }
 
         public string Role { get; set; }
+
+        public string ClearanceLevel { get; set; }
     }
 
 }
