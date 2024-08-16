@@ -1,12 +1,89 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "H:\\WorkFlow\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|H:\\WorkFlow\\WorkFlowWeb\\Areas\\admin\\Views\\SubCategory\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:WorkFlowWeb\\Areas\\admin\\Views\\SubCategory\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|H:\\WorkFlow\\WorkFlowWeb\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:WorkFlowWeb\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|H:\\WorkFlow\\WorkFlowWeb\\Areas\\admin\\Views\\Category\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:WorkFlowWeb\\Areas\\admin\\Views\\Category\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|H:\\WorkFlow\\WorkFlowWeb\\Areas\\admin\\Views\\ManageUser\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:WorkFlowWeb\\Areas\\admin\\Views\\ManageUser\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "H:\\WorkFlow\\WorkFlowWeb\\Areas\\admin\\Views\\SubCategory\\Index.cshtml",
+              "RelativeDocumentMoniker": "WorkFlowWeb\\Areas\\admin\\Views\\SubCategory\\Index.cshtml",
+              "ToolTip": "H:\\WorkFlow\\WorkFlowWeb\\Areas\\admin\\Views\\SubCategory\\Index.cshtml",
+              "RelativeToolTip": "WorkFlowWeb\\Areas\\admin\\Views\\SubCategory\\Index.cshtml",
+              "ViewState": "AQIAAB4AAAAAAAAAAAD4vzAAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-09T13:33:22.953Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "site.css",
+              "DocumentMoniker": "H:\\WorkFlow\\WorkFlowWeb\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "WorkFlowWeb\\wwwroot\\css\\site.css",
+              "ToolTip": "H:\\WorkFlow\\WorkFlowWeb\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "WorkFlowWeb\\wwwroot\\css\\site.css",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABgAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-08-09T13:36:15.062Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "H:\\WorkFlow\\WorkFlowWeb\\Areas\\admin\\Views\\Category\\Index.cshtml",
+              "RelativeDocumentMoniker": "WorkFlowWeb\\Areas\\admin\\Views\\Category\\Index.cshtml",
+              "ToolTip": "H:\\WorkFlow\\WorkFlowWeb\\Areas\\admin\\Views\\Category\\Index.cshtml",
+              "RelativeToolTip": "WorkFlowWeb\\Areas\\admin\\Views\\Category\\Index.cshtml",
+              "ViewState": "AQIAACEAAAAAAAAAAAD4vzMAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-09T13:33:13.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "H:\\WorkFlow\\WorkFlowWeb\\Areas\\admin\\Views\\ManageUser\\Index.cshtml",
+              "RelativeDocumentMoniker": "WorkFlowWeb\\Areas\\admin\\Views\\ManageUser\\Index.cshtml",
+              "ToolTip": "H:\\WorkFlow\\WorkFlowWeb\\Areas\\admin\\Views\\ManageUser\\Index.cshtml",
+              "RelativeToolTip": "WorkFlowWeb\\Areas\\admin\\Views\\ManageUser\\Index.cshtml",
+              "ViewState": "AQIAAB0AAAAAAAAAAAD4vy4AAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-09T13:32:45.721Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

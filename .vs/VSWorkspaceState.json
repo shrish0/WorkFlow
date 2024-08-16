@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WorkFlowWeb",
+    "\\WorkFlowWeb\\Areas"
   ],
-  "SelectedNode": "\\WorkFlow.Data",
   "PreviewInSolutionExplorer": false
 }
