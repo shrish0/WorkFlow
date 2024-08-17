@@ -2,7 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\WorkFlowWeb",
-    "\\WorkFlowWeb\\Areas"
+    "\\WorkFlowWeb\\Areas",
+    "\\WorkFlowWeb\\Areas\\admin",
+    "\\WorkFlowWeb\\Areas\\admin\\Views",
+    "\\WorkFlowWeb\\Areas\\admin\\Views\\SubCategory"
   ],
   "PreviewInSolutionExplorer": false
 }

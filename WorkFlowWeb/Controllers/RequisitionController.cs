@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using WorkFlow.Data.DataAccess;
+using Microsoft.AspNetCore.Identity;
 
 namespace WorkFlowWeb.Controllers
 {
@@ -14,10 +15,12 @@ namespace WorkFlowWeb.Controllers
     public class RequisitionController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public RequisitionController(ApplicationDbContext context)
+        public RequisitionController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // Index Page
@@ -56,8 +59,37 @@ namespace WorkFlowWeb.Controllers
         // GET: Requisition/Create
         public async Task<IActionResult> Create()
         {
+            var currentUserId = _userManager.GetUserId(User);
+
+            // Retrieve the current user's ClearanceLevel
+            var currentClearanceLevel = await _context.Users
+                                                      .Where(u => u.Id == currentUserId)
+                                                      .Select(u => u.ClearanceLevel)
+                                                      .FirstOrDefaultAsync();
+
+            string incrementedClearanceLevel = null;
+
+            if (!string.IsNullOrEmpty(currentClearanceLevel) && currentClearanceLevel.StartsWith("Cl"))
+            {
+                // Extract the numeric part of the ClearanceLevel
+                var numericPart = int.Parse(currentClearanceLevel.Substring(2));
+
+                // Increment the numeric part by 1
+                numericPart++;
+
+                // Combine the prefix "Cl" with the incremented number, padded to two digits
+                incrementedClearanceLevel = "Cl" + numericPart.ToString("D2");
+            }
+
+            // Select the email addresses of users with the incremented ClearanceLevel
+            var usersEmail = await _context.Users
+                                           .Where(u => u.ClearanceLevel == incrementedClearanceLevel)
+                                           .Select(u => u.Email)
+                                           .ToListAsync();
+
             var viewModel = new RequisitionViewModel
             {
+                UsersEmail = usersEmail,
                 Categories = await _context.Categories.ToListAsync(),
                 SubCategories = await _context.SubCategories.ToListAsync(),
                 RequisitionHeader = new RequisitionHeader(),
@@ -69,6 +101,7 @@ namespace WorkFlowWeb.Controllers
 
             return View(viewModel);
         }
+
 
         // POST: Requisition/Create
         [HttpPost]
@@ -84,11 +117,12 @@ namespace WorkFlowWeb.Controllers
             ModelState.Remove(nameof(viewModel.Categories));
             ModelState.Remove(nameof(viewModel.SubCategories));
 
-            viewModel.RequisitionHeader.RequisitionId = GenerateRequisitionId();
-            viewModel.RequisitionBody.RequisitionId = viewModel.RequisitionHeader.RequisitionId;
+
 
             if (ModelState.IsValid)
             {
+                viewModel.RequisitionHeader.RequisitionId = GenerateRequisitionId();
+                viewModel.RequisitionBody.RequisitionId = viewModel.RequisitionHeader.RequisitionId;
                 viewModel.RequisitionHeader.CreatedBy = User.Identity.Name;
                 viewModel.RequisitionHeader.CreatedAt = DateTime.Now;
 
@@ -102,7 +136,7 @@ namespace WorkFlowWeb.Controllers
             // Reload categories and subcategories in case of validation error
             viewModel.Categories = await _context.Categories.ToListAsync();
             viewModel.SubCategories = await _context.SubCategories.ToListAsync();
-
+            viewModel.UsersEmail = await _context.Users.Select(u => u.Email).ToListAsync();
             return View(viewModel);
         }
 

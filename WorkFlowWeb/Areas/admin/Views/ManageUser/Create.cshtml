@@ -35,7 +35,21 @@
                             <input asp-for="Email" class="form-control" />
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
-
+                        <div class="py-2 col-6">
+                            <label asp-for="ClearanceLevel" class="control-label col-12"></label>
+                            <select asp-for="ClearanceLevel" class="form-control">
+                                @for (int x = 1; x <= 10; x++)
+                                {
+                                    string clearanceLevel = "Cl" + x.ToString("D2");
+                                   
+                                        <option value="@clearanceLevel">
+                                            clearance @x
+                                        </option>
+                                    
+                                }
+                            </select>
+                            <span asp-validation-for="ClearanceLevel" class="text-danger"></span>
+                        </div>
                         <div class="py-2 col-6">
                             <label asp-for="FirstName" class="control-label"></label>
                             <input asp-for="FirstName" class="form-control" />

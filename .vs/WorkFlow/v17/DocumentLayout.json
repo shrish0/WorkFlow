@@ -36,7 +36,7 @@
               "RelativeDocumentMoniker": "WorkFlowWeb\\Areas\\admin\\Views\\SubCategory\\Index.cshtml",
               "ToolTip": "H:\\WorkFlow\\WorkFlowWeb\\Areas\\admin\\Views\\SubCategory\\Index.cshtml",
               "RelativeToolTip": "WorkFlowWeb\\Areas\\admin\\Views\\SubCategory\\Index.cshtml",
-              "ViewState": "AQIAAB4AAAAAAAAAAAD4vzAAAAAzAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-08-09T13:33:22.953Z",
               "IsPinned": true,
@@ -52,8 +52,7 @@
               "RelativeToolTip": "WorkFlowWeb\\wwwroot\\css\\site.css",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAABgAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-08-09T13:36:15.062Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-09T13:36:15.062Z"
             },
             {
               "$type": "Document",
@@ -65,8 +64,7 @@
               "RelativeToolTip": "WorkFlowWeb\\Areas\\admin\\Views\\Category\\Index.cshtml",
               "ViewState": "AQIAACEAAAAAAAAAAAD4vzMAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-09T13:33:13.505Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-09T13:33:13.505Z"
             },
             {
               "$type": "Document",
@@ -78,8 +76,7 @@
               "RelativeToolTip": "WorkFlowWeb\\Areas\\admin\\Views\\ManageUser\\Index.cshtml",
               "ViewState": "AQIAAB0AAAAAAAAAAAD4vy4AAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-09T13:32:45.721Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-09T13:32:45.721Z"
             }
           ]
         }

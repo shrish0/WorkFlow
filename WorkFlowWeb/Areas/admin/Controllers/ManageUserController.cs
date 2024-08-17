@@ -95,7 +95,8 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
                     PhoneNumber = model.PhoneNumber,
                     Created = DateTime.Now,
                     Modified = DateTime.Now,
-                    CreatedBy=creator.ApplicationUserId
+                    CreatedBy=creator.ApplicationUserId,
+                    ClearanceLevel=model.ClearanceLevel
                 };
                
                 var result = await _userManager.CreateAsync(user, "M(Zr[7J\\<?5$UYh{g:Bzxw'");

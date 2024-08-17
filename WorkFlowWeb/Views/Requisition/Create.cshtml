@@ -31,6 +31,8 @@
                 <div class="border p-1">
                     <div class="row pb-2">
                         <div class="py-2 col-6">
+                            <input asp-for="RequisitionHeader.RequisitionId" hidden value="2" />
+                            <input asp-for="RequisitionBody.RequisitionId" hidden  value="2"/>
                             <label class="ms-2">Category</label>
                             <select id="CategoryId" asp-for="RequisitionHeader.CategoryId" class="form-select">
                                 <option value="" disabled selected>Select Category</option>
@@ -61,8 +63,22 @@
                             </select>
                             <span asp-validation-for="RequisitionHeader.SubCategoryId" class="text-danger"></span>
                         </div>
+                        <div class="py-2 col-6">
+                            <label class="ms-2">Issued to</label>
+                            <select asp-for="RequisitionApproval.SentTo" class="form-select" >
+                                <option value="">Select Reciver</option>
+                                @foreach (var user in Model.UsersEmail)
+                                {
 
-                        <div class="py-2 col-12">
+                                    <option value="@user">
+                                            @user
+                                        </option>
+                     
+                                }
+                            </select>
+                            <span asp-validation-for="RequisitionApproval.SentTo" class="text-danger"></span>
+                        </div>
+                        <div class="py-2 col-6">
                             <label asp-for="RequisitionBody.Subject" class="control-label"></label>
                             <input asp-for="RequisitionBody.Subject" class="form-control" />
                             <span asp-validation-for="RequisitionBody.Subject" class="text-danger"></span>
