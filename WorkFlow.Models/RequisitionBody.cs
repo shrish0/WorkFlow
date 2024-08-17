@@ -13,11 +13,13 @@ namespace WorkFlow.Models
         public RequisitionHeader? RequisitionHeader { get; set; }
 
         [Required]
+        [MaxLength(255)] // Example length, adjust as needed
         public string Subject { get; set; }
 
-        public string Description { get; set; }
+        [MaxLength(1000)] // Example length, adjust as needed
+        public string? Description { get; set; }
 
         [Required]
-        public bool hasAttachment { get; set; }
+        public bool HasAttachment { get; set; } = false; // Default to false
     }
 }

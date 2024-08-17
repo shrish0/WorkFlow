@@ -1,1 +1,140 @@
 ﻿@model RequisitionViewModel
+
+<div class="row justify-content-center">
+    <div class="card shadow mt-4 border-0 col-lg-8 px-0">
+        <div class="card-header bg-secondary bg-gradient m-lg-0">
+            <div class="row">
+                <div class="text-center col-12">
+                    <h2 class="text-white py-2">
+                        Create New Requisition
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger">
+                        <strong>There are some errors in your form:</strong>
+                        <ul>
+                            @foreach (var state in ViewData.ModelState.Values)
+                            {
+                                foreach (var error in state.Errors)
+                                {
+                                    <li>@error.ErrorMessage</li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                }
+                <div class="border p-1">
+                    <div class="row pb-2">
+                        <div class="py-2 col-6">
+                            <label class="ms-2">Category</label>
+                            <select id="CategoryId" asp-for="RequisitionHeader.CategoryId" class="form-select">
+                                <option value="" disabled selected>Select Category</option>
+                                @foreach (var category in Model.Categories)
+                                {
+                                    @if (category.IsActive)
+                                    {
+                                        <option value="@category.CategoryId">@category.Description</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="RequisitionHeader.CategoryId" class="text-danger"></span>
+                        </div>
+
+                        <div class="py-2 col-6">
+                            <label class="ms-2">Sub Category</label>
+                            <select id="SubCategoryId" asp-for="RequisitionHeader.SubCategoryId" class="form-select disabled-select" disabled>
+                                <option value="">Select Sub Category</option>
+                                @foreach (var subCategory in Model.SubCategories)
+                                {
+                                    @if (subCategory.IsActive)
+                                    {
+                                        <option value="@subCategory.SubCategoryId" data-category="@subCategory.CategoryId">
+                                            @subCategory.Description
+                                        </option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="RequisitionHeader.SubCategoryId" class="text-danger"></span>
+                        </div>
+
+                        <div class="py-2 col-12">
+                            <label asp-for="RequisitionBody.Subject" class="control-label"></label>
+                            <input asp-for="RequisitionBody.Subject" class="form-control" />
+                            <span asp-validation-for="RequisitionBody.Subject" class="text-danger"></span>
+                        </div>
+
+                        <div class="py-2 col-12">
+                            <label asp-for="RequisitionBody.Description" class="control-label"></label>
+                            <textarea asp-for="RequisitionBody.Description" class="form-control border-0 shadow"></textarea>
+                            <span asp-validation-for="RequisitionBody.Description" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="row mt-3">
+                            <div class="col-6 col-md-6">
+                                <button type="submit" class="btn btn-primary form-control">
+                                    Save
+                                </button>
+                            </div>
+                            <div class="col-6 col-md-6">
+                                <a asp-controller="Requisition" asp-action="Index" class="btn btn-outline-secondary form-control">Back to Index</a>
+                            </div>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" class="row mt-2"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#CategoryId').on('change', function () {
+                var selectedCategoryId = $(this).val();
+
+                // Enable the SubCategory dropdown if a category is selected
+                if (selectedCategoryId) {
+                    $('#SubCategoryId').prop('disabled', false).removeClass('disabled-select');
+                } else {
+                    $('#SubCategoryId').prop('disabled', true).addClass('disabled-select');
+                }
+
+                // Filter the SubCategories based on the selected Category
+                $('#SubCategoryId option').each(function () {
+                    var categoryId = $(this).data('category');
+
+                    if (categoryId == selectedCategoryId) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+
+                // Reset the SubCategory dropdown
+                $('#SubCategoryId').val('');
+            });
+
+            // Trigger change event to filter SubCategories and manage dropdown state when the page loads
+            $('#CategoryId').trigger('change');
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    /* Add styling to disabled select */
+    .disabled-select {
+        background-color: #e9ecef;
+        cursor: not-allowed;
+    }
+</style>

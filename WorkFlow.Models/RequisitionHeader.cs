@@ -6,6 +6,7 @@ namespace WorkFlow.Models
 {
     public class RequisitionHeader
     {
+        [Key]
         public string RequisitionId { get; set; }
 
         [Required]
@@ -22,6 +23,6 @@ namespace WorkFlow.Models
 
         public string? CreatedBy { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }
