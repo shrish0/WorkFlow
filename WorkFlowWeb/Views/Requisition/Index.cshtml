@@ -1,4 +1,4 @@
-﻿
+﻿@model List<RequisitionBody>
 <div class="card shadow m-4 border-0">
     <div class="card-header bg-secondary bg-gradient m-lg-0 py-3">
         <div class="row">
@@ -23,32 +23,31 @@
         <table class="table table-bordered table-striped" id="userTable">
             <thead>
                 <tr>
-                    <th>User ID</th>
-                    <th>User Name</th>
-                    <th>Clearance Level</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Created by</th>
+                    <th>Requisition ID</th>
+                    <th>Subject</th>
+                    <th class="description-cell">Description</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-           
+                @foreach(var request in Model.OrderBy(u => u.RequisitionId))
+                {
                     <tr>
-                        <td>user.ApplicationUserId</td>
-                        <td>user.FirstName</td>
-                        <td>user.ClearanceLevel</td>
-                        <td class="description-cell">user.Email</td>
-                        <td class="description-cell">user.Address</td>
-                        <td>"Primary Account"</td>
+                        <td>@request.RequisitionId</td>
+                        <td>@request.Subject</td>
+                        <td>@request.Description</td>
                         <td>
                             <div class="w-100 btn-group" role="group">
-                                <a asp-controller="Requisition" asp-action="detail" asp-route-id="user.Id" class="btn btn-primary mx-2">
+                                <a asp-controller="Requisition" asp-action="detail" asp-route-id="@request.RequisitionId" class="btn btn-primary mx-2">
                                     <i class="bi bi-pen"></i> Detatil
+                                </a>
+                                <a asp-controller="Requisition" asp-action="AddFile" asp-route-id="@request.RequisitionId" class="btn btn-danger mx-2">
+                                    <i class="bi bi-pen"></i> Add File
                                 </a>
                             </div>
                         </td>
                     </tr>
+                }
             </tbody>
         </table>
     </div>

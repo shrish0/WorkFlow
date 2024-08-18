@@ -26,7 +26,8 @@ namespace WorkFlowWeb.Controllers
         // Index Page
         public async Task<IActionResult> Index()
         {
-            return View();
+            
+            return View(await _context.RequisitionBodies.ToListAsync());
         }
 
         // Detail
@@ -103,31 +104,45 @@ namespace WorkFlowWeb.Controllers
         }
 
 
-        // POST: Requisition/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RequisitionViewModel viewModel)
         {
-            
-
             // Remove unnecessary validation for Categories and SubCategories
-            // Remove validation for RequisitionId and other unnecessary fields
             ModelState.Remove(nameof(viewModel.RequisitionHeader.RequisitionId));
             ModelState.Remove(nameof(viewModel.RequisitionBody.RequisitionId));
             ModelState.Remove(nameof(viewModel.Categories));
             ModelState.Remove(nameof(viewModel.SubCategories));
 
-
-
             if (ModelState.IsValid)
             {
+                // Generate RequisitionId
                 viewModel.RequisitionHeader.RequisitionId = GenerateRequisitionId();
                 viewModel.RequisitionBody.RequisitionId = viewModel.RequisitionHeader.RequisitionId;
-                viewModel.RequisitionHeader.CreatedBy = User.Identity.Name;
-                viewModel.RequisitionHeader.CreatedAt = DateTime.Now;
 
+                var currentUserId = _userManager.GetUserId(User);
+
+                // Retrieve the sender and receiver UserIds
+                var sentTo = await _context.Users.Where(u => u.Email == viewModel.RequisitionApproval.SentTo)
+                                                  .Select(u => u.ApplicationUserId)
+                                                  .FirstOrDefaultAsync();
+                var sentBy = await _context.Users.Where(u => u.Id == currentUserId)
+                                                  .Select(u => u.ApplicationUserId)
+                                                  .FirstOrDefaultAsync();
+
+                viewModel.RequisitionHeader.CreatedBy = sentBy;
+                viewModel.RequisitionHeader.CreatedAt = DateTime.Now;
+                viewModel.RequisitionApproval.SentTo = sentTo;
+                viewModel.RequisitionApproval.SentBy = sentBy;
+
+                // First save RequisitionHeader and RequisitionBody to ensure RequisitionId exists
                 _context.Add(viewModel.RequisitionHeader);
                 _context.Add(viewModel.RequisitionBody);
+                await _context.SaveChangesAsync();
+
+                // Now save RequisitionApproval with the correct RequisitionId
+                viewModel.RequisitionApproval.RequisitionId = viewModel.RequisitionHeader.RequisitionId;
+                _context.Add(viewModel.RequisitionApproval);
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
@@ -140,6 +155,7 @@ namespace WorkFlowWeb.Controllers
             return View(viewModel);
         }
 
+
         private string GenerateRequisitionId()
         {
             try
@@ -149,7 +165,7 @@ namespace WorkFlowWeb.Controllers
 
                 // Query the database for the latest requisition ID for the current year
                 var lastRequisition = _context.RequisitionHeaders
-                    .Where(r => r.RequisitionId.StartsWith(currentYear))
+                    .Where(r => r.RequisitionId.StartsWith($"REQ{currentYear}"))
                     .OrderByDescending(r => r.RequisitionId)
                     .FirstOrDefault();
 
@@ -157,8 +173,8 @@ namespace WorkFlowWeb.Controllers
 
                 if (lastRequisition != null && !string.IsNullOrEmpty(lastRequisition.RequisitionId))
                 {
-                    // Extract the numeric part after the year
-                    string numericPart = lastRequisition.RequisitionId.Substring(4); // Length of "REQ" + year
+                    // Extract the numeric part after "REQ" + year
+                    string numericPart = lastRequisition.RequisitionId.Substring(7); // Length of "REQ" + year (3 + 4 = 7)
                     if (int.TryParse(numericPart, out int parsedNumber))
                     {
                         lastNumber = parsedNumber;
@@ -174,5 +190,6 @@ namespace WorkFlowWeb.Controllers
                 throw new InvalidOperationException("Error generating Requisition ID.", ex);
             }
         }
+
     }
 }

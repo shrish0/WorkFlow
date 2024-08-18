@@ -8,7 +8,7 @@ namespace WorkFlow.ViewModels
         public RequisitionBody RequisitionBody { get; set; }
 
         public RequisitionApproval RequisitionApproval { get; set; }
-        public List<String> UsersEmail { get; set; }
+        public List<String>? UsersEmail { get; set; }
         public List<Category>? Categories { get; set; }
         public List<SubCategory>? SubCategories { get; set; }
     }
