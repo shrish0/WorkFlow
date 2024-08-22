@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using WorkFlow.Data.DataAccess;
-using WorkFlow.Data.Migrations;
 using WorkFlow.Models;
 using WorkFlow.ViewModels;
 
@@ -281,9 +280,9 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
                 worksheet.Cell(1, 1).Value = "Category Code";
                 worksheet.Cell(1, 2).Value = "SubCategory Code";
                 worksheet.Cell(1, 3).Value = "Description";
-                worksheet.Cell(1, 4).Value = "Created By";
+                worksheet.Cell(1, 4).Value = "Is Active";
                 worksheet.Cell(1, 5).Value = "Inactivated By";
-                worksheet.Cell(1, 6).Value = "Is Active";
+                worksheet.Cell(1, 6).Value = "Created By";
                 worksheet.Cell(1, 7).Value = "Created At";
                 worksheet.Cell(1, 8).Value = "Modified At";
 
@@ -294,9 +293,9 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
                     worksheet.Cell(i + 2, 1).Value = subCategory.CategoryCode;
                     worksheet.Cell(i + 2, 2).Value = subCategory.Code;
                     worksheet.Cell(i + 2, 3).Value = subCategory.Description;
-                    worksheet.Cell(i + 2, 4).Value = subCategory.CreatedBy;
+                    worksheet.Cell(i + 2, 4).Value = subCategory.IsActive;
                     worksheet.Cell(i + 2, 5).Value = subCategory.InactivatedBy ?? "none";
-                    worksheet.Cell(i + 2, 6).Value = subCategory.IsActive;
+                    worksheet.Cell(i + 2, 6).Value = subCategory.CreatedBy;
                     worksheet.Cell(i + 2, 7).Value = subCategory.CreatedAt;
                     worksheet.Cell(i + 2, 8).Value = subCategory.ModifiedAt;
                 }
@@ -395,10 +394,15 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
 
         private bool IsValidHeader(IXLRow headerRow)
         {
-            return headerRow.Cell(1).GetValue<string>().Trim() == "Code"
-                && headerRow.Cell(2).GetValue<string>().Trim() == "Description"
-                && headerRow.Cell(3).GetValue<string>().Trim() == "Category Code"
-                && headerRow.Cell(4).GetValue<string>().Trim() == "Status";
+            bool CatCode = headerRow.Cell(1).GetValue<string>().Trim() == "Category Code";
+            bool SubCatCode = headerRow.Cell(2).GetValue<string>().Trim() == "SubCategory Code";
+            bool description = headerRow.Cell(3).GetValue<string>().Trim() == "Description";
+            bool IsActive= headerRow.Cell(4).GetValue<string>().Trim() == "Is Active";
+
+           return headerRow.Cell(1).GetValue<string>().Trim() == "Category Code"
+                && headerRow.Cell(2).GetValue<string>().Trim() == "SubCategory Code"
+                && headerRow.Cell(3).GetValue<string>().Trim() == "Description"
+                && headerRow.Cell(4).GetValue<string>().Trim() == "Is Active";
         }
     }
 }

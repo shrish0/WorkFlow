@@ -10,8 +10,11 @@ namespace WorkFlow.Models
         public int SubCategoryId { get; set; }
 
         [Required]
+
+        [MaxLength(25)]
         public string Code { get; set; }
 
+        [MaxLength(150)]
         public string Description { get; set; }
         [Required]
         public int CategoryId { get; set; }
@@ -19,6 +22,7 @@ namespace WorkFlow.Models
         [ForeignKey("CategoryId")]
         public Category? Category { get; set; }
 
+        [MaxLength(10)]
         public string? CreatedBy { get; set; }
 
         [Required]
@@ -28,6 +32,7 @@ namespace WorkFlow.Models
 
         public bool IsActive { get; set; } = true;
 
+        [MaxLength(10)]
         public string? InactivatedBy { get; set; }
     }
 }

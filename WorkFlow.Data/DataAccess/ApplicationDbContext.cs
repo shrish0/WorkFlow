@@ -78,21 +78,29 @@ namespace WorkFlow.Data.DataAccess
 
             // Configure RequisitionApproval entity
             builder.Entity<RequisitionApproval>()
-                .HasKey(ra => ra.RequisitionId);
+                 .HasKey(ra => ra.ApprovalId);
+
+            builder.Entity<RequisitionApproval>()
+                .Property(ra => ra.ApprovalId)
+                .ValueGeneratedOnAdd(); // This makes ApprovalId an identity column
 
             builder.Entity<RequisitionApproval>()
                 .HasOne(ra => ra.RequisitionHeader)
                 .WithMany() // Adjust if there is a navigation property in RequisitionHeader
                 .HasForeignKey(ra => ra.RequisitionId);
 
-            // Configure RequisitionSupplement entity
             builder.Entity<RequisitionSupplement>()
-                .HasKey(rs => rs.RequisitionId);
+                  .HasKey(rs => rs.SupplementId);
+
+            builder.Entity<RequisitionSupplement>()
+                .Property(rs => rs.SupplementId)
+                .ValueGeneratedOnAdd(); // This makes SupplementId an identity column
 
             builder.Entity<RequisitionSupplement>()
                 .HasOne(rs => rs.RequisitionHeader)
                 .WithMany() // Adjust if there is a navigation property in RequisitionHeader
                 .HasForeignKey(rs => rs.RequisitionId);
+
         }
     }
 

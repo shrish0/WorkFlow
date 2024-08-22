@@ -5,17 +5,22 @@
         <div class="row">
             <div class="text-center col-12">
                 <h2 class="text-white fs-2 fw-bold">
-                    SubCategory List
+                    SubCategory Master
                 </h2>
             </div>
-            <div class="w-100 btn-group" role="group">
-                <a asp-controller="SubCategory" asp-action="ExportToExcel" class="btn btn-primary mx-2">
-                    <i class="bi bi-cloud-arrow-down"></i>  Download
-                </a>
-                <a asp-controller="SubCategory" asp-action="" class="btn btn-danger mx-2">
-                    <i class="bi bi-cloud-arrow-up"></i>  Upload
-                </a>
-            </div>
+            <form asp-controller="SubCategory" asp-action="ImportFromExcel" enctype="multipart/form-data" method="post" class="d-inline">
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-controller="SubCategory" asp-action="ExportToExcel" class="btn btn-primary mx-2">
+                            <i class="bi bi-cloud-arrow-down"></i>  Download
+                        </a>
+
+                        <input type="file" name="file" accept=".xlsx" class="btn btn-dark mx-2" />
+                        <button type="submit" class="btn btn-danger mx-2">
+                            <i class="bi bi-cloud-arrow-up"></i> Upload
+                        </button>
+
+                    </div>
+            </form>
         </div>
     </div>
     <div class="card-body p-2 px-4">

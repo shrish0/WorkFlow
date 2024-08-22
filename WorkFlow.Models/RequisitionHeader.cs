@@ -7,6 +7,7 @@ namespace WorkFlow.Models
     public class RequisitionHeader
     {
         [Key]
+        [MaxLength(13)]
         public string RequisitionId { get; set; }
 
         [Required]
@@ -21,6 +22,7 @@ namespace WorkFlow.Models
         [ForeignKey("SubCategoryId")]
         public SubCategory? SubCategory { get; set; }
 
+        [MaxLength(13)]
         public string? CreatedBy { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

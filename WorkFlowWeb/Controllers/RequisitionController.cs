@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WorkFlow.Data.DataAccess;
 using Microsoft.AspNetCore.Identity;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace WorkFlowWeb.Controllers
 {
@@ -26,8 +27,23 @@ namespace WorkFlowWeb.Controllers
         // Index Page
         public async Task<IActionResult> Index()
         {
+
+            var currentUserId = _userManager.GetUserId(User);
+
+            // Retrieve the current user's ClearanceLevel
+            var applicationUserID = await _context.Users
+                                                      .Where(u => u.Id == currentUserId)
+                                                      .Select(u => u.ApplicationUserId)
+                                                      .FirstOrDefaultAsync();
+
+            var requisitions = await _context.RequisitionBodies
+                    .Where(r => _context.RequisitionApprovals
+                        .Any(a => (a.RequisitionId == r.RequisitionId) &&
+                                  (a.SentTo == applicationUserID || a.SentBy == applicationUserID)))
+                    .ToListAsync();
             
-            return View(await _context.RequisitionBodies.ToListAsync());
+
+            return View(requisitions);
         }
 
         // Detail
@@ -45,13 +61,20 @@ namespace WorkFlowWeb.Controllers
 
             var requisitionBody = await _context.RequisitionBodies
                 .FirstOrDefaultAsync(rb => rb.RequisitionId == id);
+            
+            var requisitionSupplement = await _context.RequisitionSupplements
+               .Where(rb => rb.RequisitionId == id).ToListAsync();
 
-            var viewModel = new RequisitionViewModel
+            var requisitionApproval = await _context.RequisitionApprovals
+              .Where(rb => rb.RequisitionId == id).ToListAsync();
+
+
+            var viewModel = new RequisitionDetailViewModels
             {
                 RequisitionHeader = requisitionHeader,
                 RequisitionBody = requisitionBody,
-                Categories = await _context.Categories.ToListAsync(),
-                SubCategories = await _context.SubCategories.ToListAsync()
+                RequisitionApproval= requisitionApproval,
+                RequisitionSupplement= requisitionSupplement
             };
 
             return View(viewModel);
@@ -153,6 +176,113 @@ namespace WorkFlowWeb.Controllers
             viewModel.SubCategories = await _context.SubCategories.ToListAsync();
             viewModel.UsersEmail = await _context.Users.Select(u => u.Email).ToListAsync();
             return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddFile(RequisitionFileViewModel viewModel, IFormFile file)
+        {
+            var currentUserId = _userManager.GetUserId(User);
+
+            // Retrieve the current user's ApplicationUserId
+            var applicationUserId = await _context.Users
+                                                  .Where(u => u.Id == currentUserId)
+                                                  .Select(u => u.ApplicationUserId)
+                                                  .FirstOrDefaultAsync();
+
+            // Check if the current user's ApplicationUserId is in SentBy or SentTo for the given RequisitionId
+            var isAuthorized = await _context.RequisitionApprovals
+                                              .AnyAsync(a => a.RequisitionId == viewModel.RequisitionId &&
+                                                             (a.SentTo == applicationUserId || a.SentBy == applicationUserId));
+
+            if (!isAuthorized)
+            {
+                // If the user is not authorized, redirect to the Index page or an Access Denied page
+                return RedirectToAction(nameof(Index));
+            }
+
+            if (ModelState.IsValid)
+            {
+                if (file != null && file.Length > 0)
+                {
+                    // Generate a unique file name to avoid collisions
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", fileName);
+
+                    // Save the file to the server
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+
+                    // Create the RequisitionSupplement entity
+                    var requisitionSupplement = new RequisitionSupplement
+                    {
+                        RequisitionId = viewModel.RequisitionId,
+                        FileLink = $"/uploads/{fileName}",
+                        Description = viewModel.Description,
+                        Number = GetNextSupplementNumber(viewModel.RequisitionId),
+                        FileAddedBy=applicationUserId
+                    };
+
+                    // Add the new RequisitionSupplement to the context
+                    _context.Add(requisitionSupplement);
+                    await _context.SaveChangesAsync();
+                }
+
+                // Redirect to AddFile to allow adding another file
+                return RedirectToAction(nameof(AddFile), new { id = viewModel.RequisitionId });
+            }
+
+            // Return the view with validation errors if needed
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddFile(string id)
+        {
+            var currentUserId = _userManager.GetUserId(User);
+
+            // Retrieve the current user's ApplicationUserId
+            var applicationUserId = await _context.Users
+                                                  .Where(u => u.Id == currentUserId)
+                                                  .Select(u => u.ApplicationUserId)
+                                                  .FirstOrDefaultAsync();
+
+            // Check if the current user's ApplicationUserId is in SentBy or SentTo for the given RequisitionId
+            var isAuthorized = await _context.RequisitionApprovals
+                                              .AnyAsync(a => a.RequisitionId == id &&
+                                                             (a.SentTo == applicationUserId || a.SentBy == applicationUserId));
+
+            if (!isAuthorized)
+            {
+                // If the user is not authorized, redirect to the Index page or an Access Denied page
+                return RedirectToAction(nameof(Index));
+            }
+            // Retrieve existing supplements to display them below the form
+            var existingSupplements = await _context.RequisitionSupplements
+                .Where(rs => rs.RequisitionId == id)
+                .ToListAsync();
+
+            var viewModel = new RequisitionFileViewModel
+            {
+                RequisitionId = id,
+                ExistingSupplements = existingSupplements
+            };
+
+            return View(viewModel);
+        }
+
+
+        // Helper method to get the next number for supplements
+        private int GetNextSupplementNumber(string requisitionId)
+        {
+            var lastSupplement = _context.RequisitionSupplements
+                .Where(rs => rs.RequisitionId == requisitionId)
+                .OrderByDescending(rs => rs.Number)
+                .FirstOrDefault();
+
+            return (lastSupplement?.Number ?? 0) + 1;
         }
 
 

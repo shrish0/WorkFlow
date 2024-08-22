@@ -7,16 +7,17 @@ namespace WorkFlow.Models
     public class RequisitionBody
     {
         [Required]
+        [MaxLength(13)]
         public string RequisitionId { get; set; }
 
         [ForeignKey("RequisitionId")]
         public RequisitionHeader? RequisitionHeader { get; set; }
 
         [Required]
-        [MaxLength(255)] // Example length, adjust as needed
+        [MaxLength(100)] // Example length, adjust as needed
         public string Subject { get; set; }
 
-        [MaxLength(1000)] // Example length, adjust as needed
+        [MaxLength(250)] // Example length, adjust as needed
         public string? Description { get; set; }
 
         [Required]

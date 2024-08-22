@@ -38,5 +38,8 @@
 		<ProjectReference Include="..\WorkFlow.Utility\WorkFlow.Utility.csproj" />
 		<ProjectReference Include="..\WorkFlow.ViewModels\WorkFlow.ViewModels.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="wwwroot\uploads\" />
+	</ItemGroup>
 
 </Project>

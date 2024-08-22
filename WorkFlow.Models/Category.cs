@@ -22,7 +22,7 @@ namespace WorkFlow.Models
         public DateTime ModifiedAt { get; set; }
         public bool IsActive { get; set; }
 
-        [MaxLength(15)]
+        [MaxLength(10)]
         [AllowNull]
         public string? InactivatedBy { get; set; }
 

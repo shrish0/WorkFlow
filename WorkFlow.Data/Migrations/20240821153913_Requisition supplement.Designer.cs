@@ -12,15 +12,15 @@ using WorkFlow.Data.DataAccess;
 namespace WorkFlow.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240801063230_user-model")]
-    partial class usermodel
+    [Migration("20240821153913_Requisition supplement")]
+    partial class Requisitionsupplement
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("ProductVersion", "8.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -158,7 +158,7 @@ namespace WorkFlow.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WorkFlowWeb.Data.DataAccess.LastUserId", b =>
+            modelBuilder.Entity("WorkFlow.Data.DataAccess.LastUserId", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -174,7 +174,7 @@ namespace WorkFlow.Data.Migrations
                     b.ToTable("LastUserIds");
                 });
 
-            modelBuilder.Entity("WorkFlowWeb.Models.ApplicationUser", b =>
+            modelBuilder.Entity("WorkFlow.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -184,11 +184,18 @@ namespace WorkFlow.Data.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ApplicationUserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("ClearanceLevel")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -198,7 +205,8 @@ namespace WorkFlow.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -209,11 +217,16 @@ namespace WorkFlow.Data.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsBlocked")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -264,7 +277,7 @@ namespace WorkFlow.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("WorkFlowWeb.Models.Category", b =>
+            modelBuilder.Entity("WorkFlow.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -292,8 +305,8 @@ namespace WorkFlow.Data.Migrations
                         .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("InactivatedBy")
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -311,7 +324,131 @@ namespace WorkFlow.Data.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("WorkFlowWeb.Models.SubCategory", b =>
+            modelBuilder.Entity("WorkFlow.Models.RequisitionApproval", b =>
+                {
+                    b.Property<int>("ApprovalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ApprovalId"));
+
+                    b.Property<int>("Action")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ActionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(125)
+                        .HasColumnType("nvarchar(125)");
+
+                    b.Property<string>("RequisitionId")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<string>("SentBy")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("SentTo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ApprovalId");
+
+                    b.HasIndex("RequisitionId");
+
+                    b.ToTable("RequisitionApprovals");
+                });
+
+            modelBuilder.Entity("WorkFlow.Models.RequisitionBody", b =>
+                {
+                    b.Property<string>("RequisitionId")
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<bool>("HasAttachment")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("RequisitionId");
+
+                    b.ToTable("RequisitionBodies");
+                });
+
+            modelBuilder.Entity("WorkFlow.Models.RequisitionHeader", b =>
+                {
+                    b.Property<string>("RequisitionId")
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<int>("SubCategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RequisitionId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("SubCategoryId");
+
+                    b.ToTable("RequisitionHeaders");
+                });
+
+            modelBuilder.Entity("WorkFlow.Models.RequisitionSupplement", b =>
+                {
+                    b.Property<int>("SupplementId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplementId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("FileAddedBy")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("FileLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RequisitionId")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.HasKey("SupplementId");
+
+                    b.HasIndex("RequisitionId");
+
+                    b.ToTable("RequisitionSupplements");
+                });
+
+            modelBuilder.Entity("WorkFlow.Models.SubCategory", b =>
                 {
                     b.Property<int>("SubCategoryId")
                         .ValueGeneratedOnAdd()
@@ -324,7 +461,8 @@ namespace WorkFlow.Data.Migrations
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -332,14 +470,17 @@ namespace WorkFlow.Data.Migrations
                         .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("InactivatedBy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -367,7 +508,7 @@ namespace WorkFlow.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("WorkFlowWeb.Models.ApplicationUser", null)
+                    b.HasOne("WorkFlow.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -376,7 +517,7 @@ namespace WorkFlow.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("WorkFlowWeb.Models.ApplicationUser", null)
+                    b.HasOne("WorkFlow.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -391,7 +532,7 @@ namespace WorkFlow.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkFlowWeb.Models.ApplicationUser", null)
+                    b.HasOne("WorkFlow.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -400,16 +541,68 @@ namespace WorkFlow.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("WorkFlowWeb.Models.ApplicationUser", null)
+                    b.HasOne("WorkFlow.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WorkFlowWeb.Models.SubCategory", b =>
+            modelBuilder.Entity("WorkFlow.Models.RequisitionApproval", b =>
                 {
-                    b.HasOne("WorkFlowWeb.Models.Category", "Category")
+                    b.HasOne("WorkFlow.Models.RequisitionHeader", "RequisitionHeader")
+                        .WithMany()
+                        .HasForeignKey("RequisitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RequisitionHeader");
+                });
+
+            modelBuilder.Entity("WorkFlow.Models.RequisitionBody", b =>
+                {
+                    b.HasOne("WorkFlow.Models.RequisitionHeader", "RequisitionHeader")
+                        .WithMany()
+                        .HasForeignKey("RequisitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RequisitionHeader");
+                });
+
+            modelBuilder.Entity("WorkFlow.Models.RequisitionHeader", b =>
+                {
+                    b.HasOne("WorkFlow.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WorkFlow.Models.SubCategory", "SubCategory")
+                        .WithMany()
+                        .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("SubCategory");
+                });
+
+            modelBuilder.Entity("WorkFlow.Models.RequisitionSupplement", b =>
+                {
+                    b.HasOne("WorkFlow.Models.RequisitionHeader", "RequisitionHeader")
+                        .WithMany()
+                        .HasForeignKey("RequisitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RequisitionHeader");
+                });
+
+            modelBuilder.Entity("WorkFlow.Models.SubCategory", b =>
+                {
+                    b.HasOne("WorkFlow.Models.Category", "Category")
                         .WithMany("SubCategories")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -418,7 +611,7 @@ namespace WorkFlow.Data.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("WorkFlowWeb.Models.Category", b =>
+            modelBuilder.Entity("WorkFlow.Models.Category", b =>
                 {
                     b.Navigation("SubCategories");
                 });

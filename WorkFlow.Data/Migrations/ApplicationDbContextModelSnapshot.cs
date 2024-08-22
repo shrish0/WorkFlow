@@ -181,15 +181,18 @@ namespace WorkFlow.Data.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ApplicationUserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("ClearanceLevel")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -199,7 +202,8 @@ namespace WorkFlow.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -210,11 +214,16 @@ namespace WorkFlow.Data.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsBlocked")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -293,8 +302,8 @@ namespace WorkFlow.Data.Migrations
                         .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("InactivatedBy")
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -314,8 +323,11 @@ namespace WorkFlow.Data.Migrations
 
             modelBuilder.Entity("WorkFlow.Models.RequisitionApproval", b =>
                 {
-                    b.Property<string>("RequisitionId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ApprovalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ApprovalId"));
 
                     b.Property<int>("Action")
                         .HasColumnType("int");
@@ -324,15 +336,24 @@ namespace WorkFlow.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(125)
+                        .HasColumnType("nvarchar(125)");
+
+                    b.Property<string>("RequisitionId")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.Property<string>("SentBy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("SentTo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("RequisitionId");
+                    b.HasKey("ApprovalId");
+
+                    b.HasIndex("RequisitionId");
 
                     b.ToTable("RequisitionApprovals");
                 });
@@ -340,19 +361,20 @@ namespace WorkFlow.Data.Migrations
             modelBuilder.Entity("WorkFlow.Models.RequisitionBody", b =>
                 {
                     b.Property<string>("RequisitionId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<bool>("HasAttachment")
                         .HasColumnType("bit");
 
                     b.Property<string>("Subject")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("RequisitionId");
 
@@ -362,7 +384,8 @@ namespace WorkFlow.Data.Migrations
             modelBuilder.Entity("WorkFlow.Models.RequisitionHeader", b =>
                 {
                     b.Property<string>("RequisitionId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -371,7 +394,8 @@ namespace WorkFlow.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
 
                     b.Property<int>("SubCategoryId")
                         .HasColumnType("int");
@@ -387,8 +411,20 @@ namespace WorkFlow.Data.Migrations
 
             modelBuilder.Entity("WorkFlow.Models.RequisitionSupplement", b =>
                 {
-                    b.Property<string>("RequisitionId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("SupplementId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplementId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("FileAddedBy")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("FileLink")
                         .IsRequired()
@@ -397,7 +433,14 @@ namespace WorkFlow.Data.Migrations
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.HasKey("RequisitionId");
+                    b.Property<string>("RequisitionId")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.HasKey("SupplementId");
+
+                    b.HasIndex("RequisitionId");
 
                     b.ToTable("RequisitionSupplements");
                 });
@@ -415,7 +458,8 @@ namespace WorkFlow.Data.Migrations
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -423,14 +467,17 @@ namespace WorkFlow.Data.Migrations
                         .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("InactivatedBy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
