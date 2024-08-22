@@ -1,1 +1,127 @@
-﻿<h1>Detail page</h1>
+﻿@model WorkFlow.ViewModels.RequisitionDetailViewModels
+
+@{
+    ViewData["Title"] = "Requisition Details";
+}
+
+<div class="row justify-content-center">
+    <div class="col-12 text-end mb-4">
+        <a asp-action="Index" class="btn btn-primary me-3 p-2">Back to List</a>
+    </div>
+
+    <!-- Added top margin, rounded corners, and border radius -->
+    <div class="shadow mt-4 m-4 border-0 col-md-9 rounded">
+        <table class="table table-bordered table-striped rounded">
+            <thead>
+                <tr>
+                    <td colspan="2"><span class="fs-3 fw-bold">Requisition Details</span></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>ID:</th>
+                    <td>@Model.RequisitionHeader.RequisitionId</td>
+                </tr>
+                <tr>
+                    <th>Subject:</th>
+                    <td>@Model.RequisitionBody.Subject</td>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <td>@Model.RequisitionBody.Description</td>
+                </tr>
+                <tr>
+                    <th>Category:</th>
+                    <td>@Model.RequisitionHeader.Category.Code</td>
+                </tr>
+                <tr>
+                    <th>Sub Category:</th>
+                    <td>@Model.RequisitionHeader.SubCategory?.Code</td>
+                </tr>
+                <tr>
+                    <th>Created By:</th>
+                    <td>@Model.RequisitionHeader.CreatedBy</td>
+                </tr>
+                <tr>
+                    <th>Created At:</th>
+                    <td>@Model.RequisitionHeader.CreatedAt.ToString("dd MMM yyyy")</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Added top margin, rounded corners, and border radius -->
+    <div class="shadow mt-4 m-4 border-0 col-md-9 rounded">
+        <table class="table table-bordered table-striped rounded">
+            <thead>
+                <tr>
+                    <th colspan="6" class="fs-3 fw-bold">
+                        Approvals
+                    </th>
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <th>Sent To</th>
+                    <th>Sent By</th>
+                    <th>Action</th>
+                    <th>Action Date</th>
+                    <th>Comment</th>
+                    <th>Options</th> <!-- New column for action buttons -->
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var approval in Model.RequisitionApproval)
+                {
+                    <tr>
+                        <td>@approval.SentTo</td>
+                        <td>@approval.SentBy</td>
+                        <td>@approval.Action</td>
+                        <td>@approval.ActionDate.ToString("dd MMM yyyy")</td>
+                        <td>@approval.Comment</td>
+                        <td>
+                            @if (approval.SentTo == Model.ApplicationUserId)
+                            {
+                                <a asp-action="TakeAction" asp-route-id="@approval.ApprovalId" class="btn btn-success btn-sm w-100">Take Action</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Added top margin, rounded corners, and border radius -->
+    <div class="shadow mt-4 m-4 border-0 col-md-9 rounded">
+        <table class="table table-bordered table-striped rounded">
+            <thead>
+                <tr>
+                    <th colspan="5" class="fs-3 fw-bold">
+                        Supplements
+                    </th>
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>File Link</th>
+                    <th>Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var supplement in Model.RequisitionSupplement)
+                {
+                    <tr>
+                        <td>@supplement.Description</td>
+                        <td>
+                            <a href="@supplement.FileLink" target="_blank" class="text-decoration-none">
+                                <i class="bi bi-arrow-down-circle-fill"></i> &nbsp; Download
+                            </a>
+                        </td>
+                        <td>@supplement.Number</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

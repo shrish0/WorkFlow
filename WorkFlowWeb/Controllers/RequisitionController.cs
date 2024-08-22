@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using WorkFlow.Data.DataAccess;
 using Microsoft.AspNetCore.Identity;
 using DocumentFormat.OpenXml.Office2010.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace WorkFlowWeb.Controllers
 {
@@ -49,6 +50,14 @@ namespace WorkFlowWeb.Controllers
         // Detail
         public async Task<IActionResult> Detail(string id)
         {
+            var currentUserId = _userManager.GetUserId(User);
+
+            // Retrieve the current user's ClearanceLevel
+            var applicationUserID = await _context.Users
+                                                      .Where(u => u.Id == currentUserId)
+                                                      .Select(u => u.ApplicationUserId)
+                                                      .FirstOrDefaultAsync();
+
             var requisitionHeader = await _context.RequisitionHeaders
                 .Include(r => r.Category)
                 .Include(r => r.SubCategory)
@@ -66,7 +75,8 @@ namespace WorkFlowWeb.Controllers
                .Where(rb => rb.RequisitionId == id).ToListAsync();
 
             var requisitionApproval = await _context.RequisitionApprovals
-              .Where(rb => rb.RequisitionId == id).ToListAsync();
+              .Where(ra => ra.RequisitionId == id && ra.SentTo == applicationUserID || ra.SentBy == applicationUserID).ToListAsync();
+            
 
 
             var viewModel = new RequisitionDetailViewModels
@@ -74,7 +84,8 @@ namespace WorkFlowWeb.Controllers
                 RequisitionHeader = requisitionHeader,
                 RequisitionBody = requisitionBody,
                 RequisitionApproval= requisitionApproval,
-                RequisitionSupplement= requisitionSupplement
+                RequisitionSupplement= requisitionSupplement,
+                ApplicationUserId=applicationUserID
             };
 
             return View(viewModel);
@@ -178,6 +189,157 @@ namespace WorkFlowWeb.Controllers
             return View(viewModel);
         }
 
+        // GET: Requisition/TakeAction
+        public async Task<IActionResult> TakeAction(int id)
+        {
+            var currentUserId = _userManager.GetUserId(User);
+            var currentClearanceLevel = await _context.Users
+                                                      .Where(u => u.Id == currentUserId)
+                                                      .Select(u => u.ClearanceLevel)
+                                                      .FirstOrDefaultAsync();
+
+            string incrementedClearanceLevel = null;
+
+            if (!string.IsNullOrEmpty(currentClearanceLevel) && currentClearanceLevel.StartsWith("Cl"))
+            {
+                // Extract the numeric part of the ClearanceLevel
+                var numericPart = int.Parse(currentClearanceLevel.Substring(2));
+
+                // Increment the numeric part by 1
+                numericPart++;
+
+                // Combine the prefix "Cl" with the incremented number, padded to two digits
+                incrementedClearanceLevel = "Cl" + numericPart.ToString("D2");
+            }
+
+            // Select the email addresses of users with the incremented ClearanceLevel
+            var usersEmail = await _context.Users
+                                           .Where(u => u.ClearanceLevel == incrementedClearanceLevel)
+                                           .Select(u => u.Email)
+                                           .ToListAsync();
+            // Retrieve the approval record based on the approval ID
+            var approval = await _context.RequisitionApprovals
+                .FirstOrDefaultAsync(a => a.ApprovalId == id);
+
+            if (approval == null)
+            {
+                return NotFound();
+            }
+
+            // Prepare the ViewModel for the TakeAction view
+            var viewModel = new RequisitionApprovalActionViewModel
+            {
+                ApprovalId = approval.ApprovalId,
+                SentTo = approval.SentTo,
+                Comment = approval.Comment,
+                NewAction = approval.Action ,// Pre-select the current action
+                UsersEmail = usersEmail,
+            };
+
+            // Return the view with the ViewModel
+            return View(viewModel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> TakeAction(RequisitionApprovalActionViewModel model)
+        {
+            var currentUserId = _userManager.GetUserId(User);
+            var applicationUserId = _context.ApplicationUsers.Where(u=>(u.Id==currentUserId))
+                                .Select(u=>u.ApplicationUserId)
+                                .FirstOrDefault();
+            if (ModelState.IsValid)
+            {
+                var approval = await _context.RequisitionApprovals
+                    .FirstOrDefaultAsync(a => a.ApprovalId == model.ApprovalId);
+
+                if (approval == null)
+                {
+                    return NotFound();
+                }
+
+                if (model.NewAction == RequisitionAction.SuccessFull || model.NewAction == RequisitionAction.Rejected)
+                {
+                    // Update all approvals with the same RequisitionId
+                    var relatedApprovals = await _context.RequisitionApprovals
+                        .Where(a => a.RequisitionId == approval.RequisitionId)
+                        .ToListAsync();
+
+                    foreach (var relatedApproval in relatedApprovals)
+                    {
+                        relatedApproval.Action = model.NewAction;
+                        relatedApproval.Comment = model.Comment;
+                        relatedApproval.ActionDate = DateTime.Now;
+                    }
+
+                    await _context.SaveChangesAsync();
+                }
+                else if ( model.NewAction == RequisitionAction.Pending)
+                {
+                    string reciverid = await _context.Users.Where(u => u.Email == model.SentTo)
+                                                  .Select(u => u.ApplicationUserId)
+                                                  .FirstOrDefaultAsync();
+                    // Create a new RequisitionApproval record
+                    var newApproval = new RequisitionApproval
+                    {
+                        RequisitionId = approval.RequisitionId,
+                        SentBy = applicationUserId, // Set SentBy as the previous recipient
+                        SentTo = reciverid,
+                        Action = RequisitionAction.Pending,
+                        Comment = model.Comment,
+                        ActionDate = DateTime.Now
+                    };
+
+                    _context.RequisitionApprovals.Add(newApproval);
+                    await _context.SaveChangesAsync();
+                }
+                else if(model.NewAction == RequisitionAction.NeedUpdation)
+                {
+                    // Update all approvals with the same RequisitionId
+                    var relatedApproval = await _context.RequisitionApprovals
+                        .Where(a => a.ApprovalId == model.ApprovalId)
+                        .FirstOrDefaultAsync();
+                    relatedApproval.Action = model.NewAction;
+                    relatedApproval.Comment = model.Comment;
+                    relatedApproval.ActionDate = DateTime.Now;
+                    await _context.SaveChangesAsync();
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            var currentClearanceLevel = await _context.Users
+                                                      .Where(u => u.Id == currentUserId)
+                                                      .Select(u => u.ClearanceLevel)
+                                                      .FirstOrDefaultAsync();
+
+            string incrementedClearanceLevel = null;
+
+            if (!string.IsNullOrEmpty(currentClearanceLevel) && currentClearanceLevel.StartsWith("Cl"))
+            {
+                // Extract the numeric part of the ClearanceLevel
+                var numericPart = int.Parse(currentClearanceLevel.Substring(2));
+
+                // Increment the numeric part by 1
+                numericPart++;
+
+                // Combine the prefix "Cl" with the incremented number, padded to two digits
+                incrementedClearanceLevel = "Cl" + numericPart.ToString("D2");
+            }
+
+            // Select the email addresses of users with the incremented ClearanceLevel
+            var usersEmail = await _context.Users
+                                           .Where(u => u.ClearanceLevel == incrementedClearanceLevel)
+                                           .Select(u => u.Email)
+                                           .ToListAsync();
+
+            model.UsersEmail = usersEmail;
+            // Handle invalid model state (if any)
+            return View(model);
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddFile(RequisitionFileViewModel viewModel, IFormFile file)
@@ -272,6 +434,8 @@ namespace WorkFlowWeb.Controllers
 
             return View(viewModel);
         }
+
+
 
 
         // Helper method to get the next number for supplements

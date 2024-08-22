@@ -1,0 +1,78 @@
+﻿@model RequisitionApprovalActionViewModel
+
+<div class="row justify-content-center">
+    <div class="card shadow mt-4 border-0 col-lg-8 px-0">
+        <div class="card-header bg-secondary bg-gradient m-lg-0">
+            <div class="row">
+                <div class="text-center col-12">
+                    <h2 class="text-white py-2">Take Action</h2>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-action="TakeAction" method="post">
+                @Html.AntiForgeryToken()
+
+                <input type="hidden" name="ApprovalId" value="@Model.ApprovalId" />
+
+                <div class="mb-3">
+                    <label for="NewAction" class="form-label">Action</label>
+                    <select id="NewAction" name="NewAction" class="form-select" required>
+                        <option value="" disabled selected>Select action</option>
+                        <option value="SuccessFull">Approve</option>
+                        <option value="Rejected">Reject</option>
+                        <option value="NeedUpdation">Need Updation</option>
+                        <option value="Pending">Next Stage</option>
+                    </select>
+                    <span asp-validation-for="NewAction" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Comment" class="form-label">Comment</label>
+                    <input type="text" id="Comment" name="Comment" class="form-control" placeholder="Enter comment" value="@Model.Comment" required />
+                    <span asp-validation-for="Comment" class="text-danger"></span>
+                </div>
+
+                <div id="sentToContainer" class="mb-3 d-none">
+                    <label for="SentTo" class="form-label">Send To</label>
+                    <select id="SentTo" name="SentTo" class="form-select">
+                        <option value="" disabled selected>Select Receiver</option>
+                        @foreach (var user in Model.UsersEmail)
+                        {
+                            <option value="@user">@user</option>
+                        }
+                    </select>
+                    <span asp-validation-for="SentTo" class="text-danger"></span>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary form-control">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#NewAction').on('change', function () {
+                var selectedAction = $(this).val();
+
+                if (selectedAction === 'Pending') {
+                    $('#sentToContainer').removeClass('d-none');
+                    $('#SentTo').prop('required', true); // Make "Send To" required if "Next Stage" is selected
+                } else {
+                    $('#sentToContainer').addClass('d-none');
+                    $('#SentTo').prop('required', false); // Remove "Send To" requirement
+                }
+            });
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
