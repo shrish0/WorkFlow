@@ -11,3 +11,16 @@ H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.dll
 H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\refint\WorkFlow.Models.dll
 H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.pdb
 H:\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\ref\WorkFlow.Models.dll
+H:\#c project\WorkFlow\WorkFlow.Models\bin\Debug\net8.0\WorkFlow.Models.deps.json
+H:\#c project\WorkFlow\WorkFlow.Models\bin\Debug\net8.0\WorkFlow.Models.dll
+H:\#c project\WorkFlow\WorkFlow.Models\bin\Debug\net8.0\WorkFlow.Models.pdb
+H:\#c project\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.csproj.AssemblyReference.cache
+H:\#c project\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.GeneratedMSBuildEditorConfig.editorconfig
+H:\#c project\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.AssemblyInfoInputs.cache
+H:\#c project\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.AssemblyInfo.cs
+H:\#c project\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.csproj.CoreCompileInputs.cache
+H:\#c project\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.sourcelink.json
+H:\#c project\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.dll
+H:\#c project\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\refint\WorkFlow.Models.dll
+H:\#c project\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\WorkFlow.Models.pdb
+H:\#c project\WorkFlow\WorkFlow.Models\obj\Debug\net8.0\ref\WorkFlow.Models.dll

@@ -11,3 +11,16 @@ H:\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\WorkFlow.Utility.dll
 H:\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\refint\WorkFlow.Utility.dll
 H:\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\WorkFlow.Utility.pdb
 H:\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\ref\WorkFlow.Utility.dll
+H:\#c project\WorkFlow\WorkFlow.Utility\bin\Debug\net8.0\WorkFlow.Utility.deps.json
+H:\#c project\WorkFlow\WorkFlow.Utility\bin\Debug\net8.0\WorkFlow.Utility.dll
+H:\#c project\WorkFlow\WorkFlow.Utility\bin\Debug\net8.0\WorkFlow.Utility.pdb
+H:\#c project\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\WorkFlow.Utility.csproj.AssemblyReference.cache
+H:\#c project\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\WorkFlow.Utility.GeneratedMSBuildEditorConfig.editorconfig
+H:\#c project\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\WorkFlow.Utility.AssemblyInfoInputs.cache
+H:\#c project\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\WorkFlow.Utility.AssemblyInfo.cs
+H:\#c project\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\WorkFlow.Utility.csproj.CoreCompileInputs.cache
+H:\#c project\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\WorkFlow.Utility.sourcelink.json
+H:\#c project\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\WorkFlow.Utility.dll
+H:\#c project\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\refint\WorkFlow.Utility.dll
+H:\#c project\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\WorkFlow.Utility.pdb
+H:\#c project\WorkFlow\WorkFlow.Utility\obj\Debug\net8.0\ref\WorkFlow.Utility.dll

@@ -14,3 +14,19 @@ H:\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.dll
 H:\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\refint\WorkFlow.ViewModels.dll
 H:\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.pdb
 H:\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\ref\WorkFlow.ViewModels.dll
+H:\#c project\WorkFlow\WorkFlow.ViewModels\bin\Debug\net8.0\WorkFlow.ViewModels.deps.json
+H:\#c project\WorkFlow\WorkFlow.ViewModels\bin\Debug\net8.0\WorkFlow.ViewModels.dll
+H:\#c project\WorkFlow\WorkFlow.ViewModels\bin\Debug\net8.0\WorkFlow.ViewModels.pdb
+H:\#c project\WorkFlow\WorkFlow.ViewModels\bin\Debug\net8.0\WorkFlow.Models.dll
+H:\#c project\WorkFlow\WorkFlow.ViewModels\bin\Debug\net8.0\WorkFlow.Models.pdb
+H:\#c project\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.csproj.AssemblyReference.cache
+H:\#c project\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.GeneratedMSBuildEditorConfig.editorconfig
+H:\#c project\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.AssemblyInfoInputs.cache
+H:\#c project\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.AssemblyInfo.cs
+H:\#c project\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.csproj.CoreCompileInputs.cache
+H:\#c project\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.sourcelink.json
+H:\#c project\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.E9CE3DE4.Up2Date
+H:\#c project\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.dll
+H:\#c project\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\refint\WorkFlow.ViewModels.dll
+H:\#c project\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\WorkFlow.ViewModels.pdb
+H:\#c project\WorkFlow\WorkFlow.ViewModels\obj\Debug\net8.0\ref\WorkFlow.ViewModels.dll

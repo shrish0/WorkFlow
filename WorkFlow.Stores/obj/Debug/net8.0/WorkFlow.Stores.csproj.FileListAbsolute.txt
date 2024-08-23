@@ -16,3 +16,21 @@ H:\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\WorkFlow.Stores.dll
 H:\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\refint\WorkFlow.Stores.dll
 H:\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\WorkFlow.Stores.pdb
 H:\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\ref\WorkFlow.Stores.dll
+H:\#c project\WorkFlow\WorkFlow.Stores\bin\Debug\net8.0\WorkFlow.Stores.deps.json
+H:\#c project\WorkFlow\WorkFlow.Stores\bin\Debug\net8.0\WorkFlow.Stores.dll
+H:\#c project\WorkFlow\WorkFlow.Stores\bin\Debug\net8.0\WorkFlow.Stores.pdb
+H:\#c project\WorkFlow\WorkFlow.Stores\bin\Debug\net8.0\WorkFlow.Data.dll
+H:\#c project\WorkFlow\WorkFlow.Stores\bin\Debug\net8.0\WorkFlow.Models.dll
+H:\#c project\WorkFlow\WorkFlow.Stores\bin\Debug\net8.0\WorkFlow.Data.pdb
+H:\#c project\WorkFlow\WorkFlow.Stores\bin\Debug\net8.0\WorkFlow.Models.pdb
+H:\#c project\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\WorkFlow.Stores.csproj.AssemblyReference.cache
+H:\#c project\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\WorkFlow.Stores.GeneratedMSBuildEditorConfig.editorconfig
+H:\#c project\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\WorkFlow.Stores.AssemblyInfoInputs.cache
+H:\#c project\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\WorkFlow.Stores.AssemblyInfo.cs
+H:\#c project\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\WorkFlow.Stores.csproj.CoreCompileInputs.cache
+H:\#c project\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\WorkFlow.Stores.sourcelink.json
+H:\#c project\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\WorkFlow.9058507F.Up2Date
+H:\#c project\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\WorkFlow.Stores.dll
+H:\#c project\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\refint\WorkFlow.Stores.dll
+H:\#c project\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\WorkFlow.Stores.pdb
+H:\#c project\WorkFlow\WorkFlow.Stores\obj\Debug\net8.0\ref\WorkFlow.Stores.dll
