@@ -7,7 +7,8 @@ using WorkFlow.Utility;
 using WorkFlow.Stores;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//Email
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 // Configuration
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection")
     ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
