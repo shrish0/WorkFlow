@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkFlow.Stores")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+263349d3ce05addb6de15b1cc1b86f7e7b256ef3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8c4bd8a1b26d6a1eeb0db063ac92c285e35dbeb")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkFlow.Stores")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkFlow.Stores")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {}
+    "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {}
   },
   "projects": {
-    "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {
+    "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj",
+        "projectUniqueName": "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj",
         "projectName": "WorkFlow.Models",
-        "projectPath": "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj",
+        "projectPath": "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj",
         "packagesPath": "C:\\Users\\shris\\.nuget\\packages\\",
-        "outputPath": "H:\\WorkFlow\\WorkFlow.Models\\obj\\",
+        "outputPath": "H:\\#c project\\WorkFlow\\WorkFlow.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shris\\AppData\\Roaming\\NuGet\\NuGet.Config",

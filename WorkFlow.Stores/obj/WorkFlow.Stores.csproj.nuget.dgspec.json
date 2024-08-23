@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\WorkFlow\\WorkFlow.Stores\\WorkFlow.Stores.csproj": {}
+    "H:\\#c project\\WorkFlow\\WorkFlow.Stores\\WorkFlow.Stores.csproj": {}
   },
   "projects": {
-    "H:\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj": {
+    "H:\\#c project\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj",
+        "projectUniqueName": "H:\\#c project\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj",
         "projectName": "WorkFlow.Data",
-        "projectPath": "H:\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj",
+        "projectPath": "H:\\#c project\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj",
         "packagesPath": "C:\\Users\\shris\\.nuget\\packages\\",
-        "outputPath": "H:\\WorkFlow\\WorkFlow.Data\\obj\\",
+        "outputPath": "H:\\#c project\\WorkFlow\\WorkFlow.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shris\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {
-                "projectPath": "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj"
+              "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {
+                "projectPath": "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj"
               }
             }
           }
@@ -79,14 +79,14 @@
         }
       }
     },
-    "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {
+    "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj",
+        "projectUniqueName": "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj",
         "projectName": "WorkFlow.Models",
-        "projectPath": "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj",
+        "projectPath": "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj",
         "packagesPath": "C:\\Users\\shris\\.nuget\\packages\\",
-        "outputPath": "H:\\WorkFlow\\WorkFlow.Models\\obj\\",
+        "outputPath": "H:\\#c project\\WorkFlow\\WorkFlow.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shris\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -146,14 +146,14 @@
         }
       }
     },
-    "H:\\WorkFlow\\WorkFlow.Stores\\WorkFlow.Stores.csproj": {
+    "H:\\#c project\\WorkFlow\\WorkFlow.Stores\\WorkFlow.Stores.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\WorkFlow\\WorkFlow.Stores\\WorkFlow.Stores.csproj",
+        "projectUniqueName": "H:\\#c project\\WorkFlow\\WorkFlow.Stores\\WorkFlow.Stores.csproj",
         "projectName": "WorkFlow.Stores",
-        "projectPath": "H:\\WorkFlow\\WorkFlow.Stores\\WorkFlow.Stores.csproj",
+        "projectPath": "H:\\#c project\\WorkFlow\\WorkFlow.Stores\\WorkFlow.Stores.csproj",
         "packagesPath": "C:\\Users\\shris\\.nuget\\packages\\",
-        "outputPath": "H:\\WorkFlow\\WorkFlow.Stores\\obj\\",
+        "outputPath": "H:\\#c project\\WorkFlow\\WorkFlow.Stores\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shris\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -171,11 +171,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "H:\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj": {
-                "projectPath": "H:\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj"
+              "H:\\#c project\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj": {
+                "projectPath": "H:\\#c project\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj"
               },
-              "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {
-                "projectPath": "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj"
+              "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {
+                "projectPath": "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj"
               }
             }
           }

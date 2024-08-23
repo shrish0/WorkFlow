@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkFlow.Utility")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cac820128dfee6f4160573cedc99fbfcf5819761")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8c4bd8a1b26d6a1eeb0db063ac92c285e35dbeb")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkFlow.Utility")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkFlow.Utility")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

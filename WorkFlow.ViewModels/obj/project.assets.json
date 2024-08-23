@@ -582,11 +582,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\WorkFlow\\WorkFlow.ViewModels\\WorkFlow.ViewModels.csproj",
+      "projectUniqueName": "H:\\#c project\\WorkFlow\\WorkFlow.ViewModels\\WorkFlow.ViewModels.csproj",
       "projectName": "WorkFlow.ViewModels",
-      "projectPath": "H:\\WorkFlow\\WorkFlow.ViewModels\\WorkFlow.ViewModels.csproj",
+      "projectPath": "H:\\#c project\\WorkFlow\\WorkFlow.ViewModels\\WorkFlow.ViewModels.csproj",
       "packagesPath": "C:\\Users\\shris\\.nuget\\packages\\",
-      "outputPath": "H:\\WorkFlow\\WorkFlow.ViewModels\\obj\\",
+      "outputPath": "H:\\#c project\\WorkFlow\\WorkFlow.ViewModels\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\shris\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -604,8 +604,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {
-              "projectPath": "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj"
+            "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {
+              "projectPath": "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj"
             }
           }
         }

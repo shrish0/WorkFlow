@@ -2965,11 +2965,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\WorkFlow\\WorkFlow.Stores\\WorkFlow.Stores.csproj",
+      "projectUniqueName": "H:\\#c project\\WorkFlow\\WorkFlow.Stores\\WorkFlow.Stores.csproj",
       "projectName": "WorkFlow.Stores",
-      "projectPath": "H:\\WorkFlow\\WorkFlow.Stores\\WorkFlow.Stores.csproj",
+      "projectPath": "H:\\#c project\\WorkFlow\\WorkFlow.Stores\\WorkFlow.Stores.csproj",
       "packagesPath": "C:\\Users\\shris\\.nuget\\packages\\",
-      "outputPath": "H:\\WorkFlow\\WorkFlow.Stores\\obj\\",
+      "outputPath": "H:\\#c project\\WorkFlow\\WorkFlow.Stores\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\shris\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2987,11 +2987,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "H:\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj": {
-              "projectPath": "H:\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj"
+            "H:\\#c project\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj": {
+              "projectPath": "H:\\#c project\\WorkFlow\\WorkFlow.Data\\WorkFlow.Data.csproj"
             },
-            "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {
-              "projectPath": "H:\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj"
+            "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj": {
+              "projectPath": "H:\\#c project\\WorkFlow\\WorkFlow.Models\\WorkFlow.Models.csproj"
             }
           }
         }
