@@ -8,6 +8,7 @@ using WorkFlow.Models;
 using WorkFlow.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace WorkFlowWeb.Areas.Admin.Controllers
 {
@@ -42,7 +43,18 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
 
             var model = new UserListViewModel
             {
-                Users = users,
+                Users = users.Select(u => new UserViewModel
+                {
+                    Id = u.Id,
+                    ApplicationUserId=u.ApplicationUserId,
+                    CreatedBy=u.CreatedBy,
+                    Email = u.Email,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Address = u.Address,
+                    PhoneNumber = u.PhoneNumber,
+                    LockoutEnd = u.LockoutEnd
+                }).ToList(),
                 CurrentUserId = currentUserId
             };
 
@@ -79,7 +91,7 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(UserViewModel model)
+        public async Task<IActionResult> Create(UserCreateViewModel model)
         {
             if (ModelState.IsValid)
             {

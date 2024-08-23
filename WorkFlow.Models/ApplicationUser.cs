@@ -27,7 +27,9 @@ namespace WorkFlow.Models
         public string ApplicationUserId { get; set; }
         [MaxLength(5)]
         public string ClearanceLevel { get; set; } = "Cl01";
-        public bool IsBlocked { get; set; } = false;
+
+        [MaxLength(10)]
+        public string? BlockedBy { get; set; } 
 
 
     }

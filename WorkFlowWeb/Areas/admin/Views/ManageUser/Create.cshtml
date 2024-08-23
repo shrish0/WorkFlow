@@ -1,4 +1,4 @@
-﻿@model WorkFlow.ViewModels.UserViewModel
+﻿@model UserCreateViewModel
 
 <div class="row justify-content-center">
     <div class="card shadow mt-4 border-0 col-lg-8 px-0">
@@ -13,6 +13,7 @@
         </div>
         <div class="card-body">
             <form asp-action="Create" method="post">
+                @Html.AntiForgeryToken() <!-- CSRF protection token -->
                 @if (!ViewData.ModelState.IsValid)
                 {
                     <div class="alert alert-danger">

@@ -26,7 +26,6 @@
                 <tr>
                     <th>User ID</th>
                     <th>User Name</th>
-                    <th>Clearance Level</th>
                     <th>Email</th>
                     <th>Address</th>
                     <th>Created by</th>
@@ -43,7 +42,6 @@
                     <tr>
                         <td>@user.ApplicationUserId</td>
                         <td>@user.FirstName</td>
-                        <td>@user.ClearanceLevel</td>
                         <td class="description-cell">@user.Email</td>
                         <td class="description-cell">@user.Address</td>
                         <td>@(string.IsNullOrEmpty(user.CreatedBy) ? "Primary Account" : user.CreatedBy)</td>
@@ -53,7 +51,7 @@
                                     <i class="bi bi-pen"></i> Edit
                                 </a>
                                 <a asp-controller="ManageUser" asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger mx-2">
-                                    <i class="bi bi-trash"></i> Delete
+                                    <i class="bi bi-trash"></i> Delete/Block
                                 </a>
                             </div>
                         </td>

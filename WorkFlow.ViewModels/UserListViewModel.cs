@@ -9,8 +9,11 @@ namespace WorkFlow.ViewModels
 {
     public class UserListViewModel
     {
-        public List<ApplicationUser> Users { get; set; }
+        public List<UserViewModel> Users { get; set; }
         public string CurrentUserId { get; set; }
     }
+
+    
+
 
 }

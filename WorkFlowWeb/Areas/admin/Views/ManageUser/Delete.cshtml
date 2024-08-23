@@ -44,6 +44,7 @@
            
 
             <form method="post" asp-action="Delete">
+                @Html.AntiForgeryToken() <!-- CSRF protection token -->
                 <input type="hidden" asp-for="Id" />
                 <div class="row">
                     <div class="col-md-6">
