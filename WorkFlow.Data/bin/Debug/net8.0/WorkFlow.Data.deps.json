@@ -623,7 +623,10 @@
           "Microsoft.Extensions.Identity.Stores": "8.0.7"
         },
         "runtime": {
-          "WorkFlow.Models.dll": {}
+          "WorkFlow.Models.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

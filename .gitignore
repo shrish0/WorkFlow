@@ -1,2 +1,5 @@
 # Ignore all files in the uploads directory
 WorkFlowWeb/wwwroot/uploads/
+
+# Ignore appsettings.json to prevent tracking sensitive configuration details
+appsettings.json
