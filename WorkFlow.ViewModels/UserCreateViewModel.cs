@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace WorkFlow.ViewModels
 {
@@ -26,7 +27,6 @@ namespace WorkFlow.ViewModels
         [StringLength(10)]
         public string PhoneNumber { get; set; }
 
-        public List<SelectListItem>? RoleList { get; set; }
         public string Role { get; set; }
 
         public string ClearanceLevel { get; set; }

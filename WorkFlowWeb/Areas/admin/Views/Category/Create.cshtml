@@ -12,7 +12,7 @@
         </div>
         <div class="card-body p-4">
             <form asp-action="Create" method="post">
-                 @Html.AntiForgeryToken() <!-- CSRF protection token -->
+                @Html.AntiForgeryToken() <!-- CSRF protection token -->
                 @if (!ViewData.ModelState.IsValid)
                 {
                     <div class="alert alert-danger">

@@ -136,7 +136,8 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
             }
 
             var roles = await _roleManager.Roles.ToListAsync();
-            ViewBag.Roles = roles.Select(role => new SelectListItem
+
+            model.RoleList = roles.Select(role => new SelectListItem
             {
                 Value = role.Name,
                 Text = role.Name
