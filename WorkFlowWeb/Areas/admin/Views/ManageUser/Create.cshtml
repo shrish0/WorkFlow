@@ -69,7 +69,7 @@
                         </div>
                         <div class="py-2 col-6">
                             <label asp-for="Role" class="control-label"></label>
-                            <select asp-for="Role" class="form-control" asp-items="ViewBag.Roles"></select>
+                            <select asp-for="Role" class="form-control" asp-items="@Model.RoleList"></select>
                             <span asp-validation-for="Role" class="text-danger"></span>
                         </div>
                         <div class="py-2 col-12">

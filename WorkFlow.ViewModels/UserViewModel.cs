@@ -13,6 +13,7 @@ namespace WorkFlow.ViewModels
         public string PhoneNumber { get; set; }
 
         public string CreatedBy { get; set; }
+        public string BlockedBy { get; set; }
         public DateTimeOffset? LockoutEnd { get; set; } // Added LockoutEnd property
     }
 

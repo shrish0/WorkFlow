@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WorkFlow.ViewModels
 {
@@ -28,6 +24,7 @@ namespace WorkFlow.ViewModels
         public string PhoneNumber { get; set; }
 
         public string Role { get; set; }
+        public List<SelectListItem>? RoleList { get; set; } // Ensure this is populated in your controller
 
         public string ClearanceLevel { get; set; }
     }

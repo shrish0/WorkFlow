@@ -117,9 +117,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNet.Mvc": {
+            "Microsoft.AspNetCore.Mvc": {
               "target": "Package",
-              "version": "[5.3.0, )"
+              "version": "[2.2.0, )"
             }
           },
           "imports": [

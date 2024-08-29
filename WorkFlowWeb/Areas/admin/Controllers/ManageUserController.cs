@@ -53,7 +53,8 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
                     LastName = u.LastName,
                     Address = u.Address,
                     PhoneNumber = u.PhoneNumber,
-                    LockoutEnd = u.LockoutEnd
+                    LockoutEnd = u.LockoutEnd,
+                    BlockedBy=u.BlockedBy
                 }).ToList(),
                 CurrentUserId = currentUserId
             };
@@ -81,12 +82,15 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
         public async Task<IActionResult> Create()
         {
             var roles = await _roleManager.Roles.ToListAsync();
-            ViewBag.Roles = roles.Select(role => new SelectListItem
+            var model = new UserCreateViewModel
             {
-                Value = role.Name,
-                Text = role.Name
-            }).ToList();
-            return View();
+                RoleList = roles.Select(role => new SelectListItem
+                {
+                    Value = role.Name,
+                    Text = role.Name
+                }).ToList()
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -136,7 +140,6 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
             }
 
             var roles = await _roleManager.Roles.ToListAsync();
-
             model.RoleList = roles.Select(role => new SelectListItem
             {
                 Value = role.Name,
@@ -273,5 +276,81 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
                 ModelState.AddModelError(string.Empty, error.Description);
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> LockUser(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            // Get the ID of the current admin performing the lock action
+            var adminId = _userManager.GetUserId(User);
+            var applicationUserID = await _context.Users
+                                                     .Where(u => u.Id == adminId)
+                                                     .Select(u => u.ApplicationUserId)
+                                                     .FirstOrDefaultAsync();
+
+            // Lock the user account for a maximum time span
+            var lockoutEndDate = DateTimeOffset.UtcNow.AddYears(100);
+            var result = await _userManager.SetLockoutEndDateAsync(user, lockoutEndDate);
+            if (result.Succeeded)
+            {
+                // Set the BlockedBy field
+                user.BlockedBy = applicationUserID;
+
+                // Save the changes to the database
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+
+                _logger.LogInformation($"User {user.Email} has been locked out by {adminId}.");
+                return RedirectToAction(nameof(Index));
+            }
+            AddErrors(result);
+            return View("Index");
+        }
+
+        // Method to unlock a user account
+        [HttpPost]
+        public async Task<IActionResult> UnlockUser(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            // Unlock the user by setting LockoutEnd to a past date (now)
+            var result = await _userManager.SetLockoutEndDateAsync(user, DateTimeOffset.UtcNow);
+            if (result.Succeeded)
+            {
+                // Clear the BlockedBy field
+                user.BlockedBy = null;
+
+                // Save the changes to the database
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+
+                _logger.LogInformation($"User {user.Email} has been unlocked.");
+                return RedirectToAction(nameof(Index));
+            }
+            AddErrors(result);
+            return View("Index");
+        }
+
+
     }
 }

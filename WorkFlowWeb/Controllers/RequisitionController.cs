@@ -75,7 +75,7 @@ namespace WorkFlowWeb.Controllers
                .Where(rb => rb.RequisitionId == id).ToListAsync();
 
             var requisitionApproval = await _context.RequisitionApprovals
-              .Where(ra => ra.RequisitionId == id && ra.SentTo == applicationUserID || ra.SentBy == applicationUserID).ToListAsync();
+              .Where(ra => ra.RequisitionId == id && (ra.SentTo == applicationUserID || ra.SentBy == applicationUserID)).ToListAsync();
             
 
 

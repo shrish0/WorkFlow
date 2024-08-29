@@ -7,13 +7,13 @@ using WorkFlow.Utility;
 using WorkFlow.Stores;
 
 var builder = WebApplication.CreateBuilder(args);
-//Email
+
+// Email Configuration
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-// Configuration
-var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection")
-    ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
 // Database Context
+var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection")
+    ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
@@ -23,8 +23,6 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddUserStore<ApplicationUserStore>()
     .AddDefaultTokenProviders();
-
-
 
 // Email Sender Service
 builder.Services.AddScoped<IEmailSender, EmailSender>();
@@ -39,7 +37,12 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = "/Identity/Account/Login";
     options.LogoutPath = "/Identity/Account/Logout";
     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // User will be signed out after 30 minutes of inactivity
+    options.SlidingExpiration = true; // Reset the expiration time if the user is active
 });
+
+// Register the CheckLockoutMiddleware
+//builder.Services.AddScoped<CheckLockoutMiddleware>();
 
 var app = builder.Build();
 
@@ -53,6 +56,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
+// Add the CheckLockoutMiddleware before Authentication and Authorization
+//app.UseMiddleware<CheckLockoutMiddleware>();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
