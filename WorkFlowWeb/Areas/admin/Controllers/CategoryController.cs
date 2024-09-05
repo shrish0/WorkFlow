@@ -1,4 +1,6 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.InkML;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -78,15 +80,17 @@ namespace WorkFlowWeb.Areas.admin.Controllers
 
 
 
-        public IActionResult Edit(int id) 
+        public async Task<IActionResult> Edit(int id) 
         {
-            Category obj = _db.Categories.Find(id);
-            if (obj == null)
+            var category = await _db.Categories
+                          .Include(c => c.SubCategories) // Load related subcategories
+                          .FirstOrDefaultAsync(c => c.CategoryId == id);
+            if (category == null)
             {
                 TempData["Error"] = "cant find category";
                 return RedirectToAction("Index");
             }
-            return View(obj);
+            return View(category);
         }
 
         [HttpPost]
@@ -100,7 +104,9 @@ namespace WorkFlowWeb.Areas.admin.Controllers
             }
 
             // Retrieve the original category from the database
-            var originalCategory = await _db.Categories.FindAsync(id);
+            var originalCategory = await _db.Categories
+                                  .Include(c => c.SubCategories) // Load related subcategories
+                                  .FirstOrDefaultAsync(c => c.CategoryId == id);
 
             if (originalCategory == null)
             {
@@ -110,7 +116,6 @@ namespace WorkFlowWeb.Areas.admin.Controllers
 
             // Update only fields that are editable
             originalCategory.Description = obj.Description;
-            originalCategory.IsActive = obj.IsActive;
             originalCategory.ModifiedAt = DateTime.Now;
 
             if (!originalCategory.IsActive)
@@ -148,12 +153,10 @@ namespace WorkFlowWeb.Areas.admin.Controllers
 
 
 
-        // GET: Category/Delete/5
-        public async Task<IActionResult> Delete(int id)
+        // GET: Category/BlockUnBlock/5
+        public async Task<IActionResult> BlockUnblock(int id)
         {
-            var category = await _db.Categories
-                .Include(c => c.SubCategories) // Load related subcategories
-                .FirstOrDefaultAsync(c => c.CategoryId == id);
+            var category = await _db.Categories.FindAsync(id);
 
             if (category == null)
             {
@@ -164,10 +167,29 @@ namespace WorkFlowWeb.Areas.admin.Controllers
             return View(category);
         }
 
-        // POST: Category/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost,ActionName("BlockUnblock")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> BlockUnblockConfirmed(int id)
+        {
+            var category = await _db.Categories.FindAsync(id);
+            if (category == null)
+            {
+                TempData["Error"] = "Category not found.";
+                return NotFound();
+            }
+
+            category.IsActive = !category.IsActive;
+            _db.Update(category);
+            _db.SaveChanges();
+            TempData["Success"] = "Category Block / UnBlock successfully.";
+
+            return RedirectToAction("Index");
+        }
+
+        // POST: Category/Delete/5
+        [HttpPost, ActionName("Block")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BlockConfirmed(int id)
         {
             var category = await _db.Categories
                 .Include(c => c.SubCategories) // Load related subcategories

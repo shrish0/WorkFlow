@@ -33,10 +33,10 @@
                                 <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="admin" asp-controller="Category" asp-action="Index">Category</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="CategoryIndex">View Category</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="admin" asp-controller="SubCategory" asp-action="Index">Sub Category</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="SubCategoryIndex">View Sub Category</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-controller="Requisition" asp-action="Index">Requisition</a>
@@ -53,7 +53,7 @@
         </nav>
     </header>
     <div class="">
-        <main role="main" style="margin-bottom:70px;">
+        <main role="main d-flex" style="margin-bottom:70px;">
             <partial name="_Notification" />
             @RenderBody()
         </main>

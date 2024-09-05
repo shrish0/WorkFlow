@@ -113,7 +113,7 @@ namespace WorkFlowWeb.Controllers
                 numericPart++;
 
                 // Combine the prefix "Cl" with the incremented number, padded to two digits
-                incrementedClearanceLevel = "Cl" + numericPart.ToString("D2");
+                incrementedClearanceLevel = "CL" + numericPart.ToString("D2");
             }
 
             // Select the email addresses of users with the incremented ClearanceLevel
@@ -275,7 +275,7 @@ namespace WorkFlowWeb.Controllers
 
                     await _context.SaveChangesAsync();
                 }
-                else if ( model.NewAction == RequisitionAction.Pending)
+                else if ( model.NewAction == RequisitionAction.SubmittedToApproval)
                 {
                     string reciverid = await _context.Users.Where(u => u.Email == model.SentTo)
                                                   .Select(u => u.ApplicationUserId)
@@ -286,7 +286,7 @@ namespace WorkFlowWeb.Controllers
                         RequisitionId = approval.RequisitionId,
                         SentBy = applicationUserId, // Set SentBy as the previous recipient
                         SentTo = reciverid,
-                        Action = RequisitionAction.Pending,
+                        Action = RequisitionAction.SubmittedToApproval,
                         Comment = model.Comment,
                         ActionDate = DateTime.Now
                     };
@@ -294,7 +294,7 @@ namespace WorkFlowWeb.Controllers
                     _context.RequisitionApprovals.Add(newApproval);
                     await _context.SaveChangesAsync();
                 }
-                else if(model.NewAction == RequisitionAction.NeedUpdation)
+                else if(model.NewAction == RequisitionAction.OnHold)
                 {
                     // Update all approvals with the same RequisitionId
                     var relatedApproval = await _context.RequisitionApprovals

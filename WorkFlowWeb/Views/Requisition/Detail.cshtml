@@ -32,11 +32,13 @@
                 </tr>
                 <tr>
                     <th>Category:</th>
-                    <td>@Model.RequisitionHeader.Category.Code</td>
+                    <td>
+                        @Model.RequisitionHeader.Category.Code - @Model.RequisitionHeader.Category.Description
+                    </td>
                 </tr>
                 <tr>
                     <th>Sub Category:</th>
-                    <td>@Model.RequisitionHeader.SubCategory?.Code</td>
+                    <td>@Model.RequisitionHeader.SubCategory?.Code - @Model.RequisitionHeader.SubCategory?.Description</td>
                 </tr>
                 <tr>
                     <th>Created By:</th>

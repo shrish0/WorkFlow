@@ -12,8 +12,9 @@ namespace WorkFlow.Models
     {
         Pending,
         Rejected,
-        NeedUpdation,
-        SuccessFull
+        SuccessFull,
+        SubmittedToApproval,
+        OnHold,
     }
 
     public class RequisitionApproval
@@ -34,7 +35,7 @@ namespace WorkFlow.Models
 
 
         [Required]
-        public RequisitionAction Action { get; set; } = RequisitionAction.Pending; // Use enum
+        public RequisitionAction Action { get; set; } = RequisitionAction.SubmittedToApproval; // Use enum
 
         [MaxLength(125)]
         public string? Comment { get; set; }

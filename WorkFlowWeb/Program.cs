@@ -5,6 +5,7 @@ using WorkFlow.Data.DataAccess;
 using WorkFlow.Models;
 using WorkFlow.Utility;
 using WorkFlow.Stores;
+using WorkFlowWeb.middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,7 +38,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = "/Identity/Account/Login";
     options.LogoutPath = "/Identity/Account/Logout";
     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // User will be signed out after 30 minutes of inactivity
+    options.ExpireTimeSpan = TimeSpan.FromDays(2); // User will be signed out after 30 minutes of inactivity
     options.SlidingExpiration = true; // Reset the expiration time if the user is active
 });
 
@@ -57,9 +58,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-// Add the CheckLockoutMiddleware before Authentication and Authorization
-//app.UseMiddleware<CheckLockoutMiddleware>();
 
+// Add the CheckLockoutMiddleware before Authentication and Authorization
+
+
+app.UseMiddleware<CheckLockoutMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 

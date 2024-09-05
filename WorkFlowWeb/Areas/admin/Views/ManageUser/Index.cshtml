@@ -50,10 +50,10 @@
                         <td>
                             <div class="w-100 btn-group" role="group">
                                 <a asp-controller="ManageUser" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary mx-2">
-                                    <i class="bi bi-pen"></i> Edit
+                                    <i class="bi bi-pen"></i> &nbsp; Edit
                                 </a>
-                                <a asp-controller="ManageUser" asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger mx-2">
-                                    <i class="bi bi-trash"></i> Delete/Block
+                                <a asp-controller="ManageUser" asp-action="Block" asp-route-id="@user.Id" class="btn btn-danger mx-2">
+                                    <i class="bi bi-ban"></i> &nbsp;  @(user.LockoutEnd > DateTimeOffset.UtcNow ? "UnBlock" : "Block")
                                 </a>
                             </div>
                         </td>

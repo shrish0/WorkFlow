@@ -45,7 +45,7 @@ namespace WorkFlow.Stores
             }
 
             int newUserId = lastUserId + 1;
-            return $"u{newUserId:D9}";
+            return $"U{newUserId:D9}";
         }
     }
 }

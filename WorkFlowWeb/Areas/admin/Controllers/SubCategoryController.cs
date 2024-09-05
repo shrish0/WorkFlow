@@ -44,13 +44,6 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
                     CategoryCode = sc.Category.Code // Include Category code
                 })
                 .ToListAsync();
-
-            // Debugging: Log or inspect the result
-            foreach (var subCategory in subCategories)
-            {
-                Console.WriteLine($"SubCategory: {subCategory.Code}, Category Code: {subCategory.CategoryCode}");
-            }
-
             return View(subCategories);
         }
 
@@ -340,9 +333,9 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
 
                         foreach (var row in rows)
                         {
-                            var code = row.Cell(1).GetValue<string>();
-                            var description = row.Cell(2).GetValue<string>();
-                            var categoryCode = row.Cell(3).GetValue<string>();
+                            var categoryCode = row.Cell(1).GetValue<string>();
+                            var code = row.Cell(2).GetValue<string>();
+                            var description = row.Cell(3).GetValue<string>();
                             var status = row.Cell(4).GetValue<string>();
 
                             // Check if the category is active
@@ -353,14 +346,19 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
                                 continue;
                             }
 
-                            // Check if the subcategory already exists
-                            var existingSubCategory = await _db.SubCategories.FirstOrDefaultAsync(s => s.Code == code);
+                            // Track changes without holding references
+                            var existingSubCategory = await _db.SubCategories
+                         .AsTracking()
+                         .FirstOrDefaultAsync(s => s.Code == code && s.Category.Code == categoryCode);
+
+
                             if (existingSubCategory != null)
                             {
                                 // Update existing subcategory
                                 existingSubCategory.Description = description;
                                 existingSubCategory.IsActive = status == "Active";
-                                existingSubCategory.ModifiedAt = DateTime.UtcNow; // Update the modified date
+                                existingSubCategory.ModifiedAt = DateTime.UtcNow;
+                                _db.SubCategories.Update(existingSubCategory);
                             }
                             else
                             {
@@ -378,6 +376,7 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
                             }
                         }
 
+                        // Save changes after processing all rows
                         await _db.SaveChangesAsync();
                     }
                 }

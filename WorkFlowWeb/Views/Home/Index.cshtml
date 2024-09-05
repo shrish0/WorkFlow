@@ -1,19 +1,131 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Admin Controls";
 }
 
-<div >
-<div class="row">
-        <div class="col-md-3 col-12 shadow border p-3 position-relative bg-dark">
-            @if (User.IsInRole(SD.Role_Admin))
-            {
-                <partial name="_Admin" />
-            }
-          
+<div class="container mt-2">
+    <div class="row justify-content-center">
+        @if (User.IsInRole(SD.Role_Admin))
+
+        {
+            <h2 class="fw-bolder mb-4">Admin Rights</h2>
+            <!-- Manage Users Card -->
+            <div class="col-md-4 col-12 mb-4 d-flex justify-content-center">
+                <div class="card shadow border col-12" style="height: 12rem; position: relative;">
+                    <div class="card-header text-center">
+                        Manage Users
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="card-text">Manage user accounts and roles.</p>
+                        <div class="row justify-content-center position-absolute w-100" style="bottom: 10px;">
+                            <div class="col-10">
+                                <a href="/admin/ManageUser" class="btn btn-primary w-100">
+                                    Go to Manage Users
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Card -->
+            <div class="col-md-4 col-12 mb-4 d-flex justify-content-center">
+                <div class="card shadow border col-12"  style="height: 12rem; position: relative;">
+                    <div class="card-header text-center">
+                        Category
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="card-text">Manage categories for your content.</p>
+                        <div class="row justify-content-center position-absolute w-100" style="bottom: 10px;">
+                            <div class="col-10">
+                                <a href="/admin/Category" class="btn btn-secondary w-100">
+                                    Go to Categories
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub Category Card -->
+            <div class="col-md-4 col-12 mb-4 d-flex justify-content-center">
+                <div class="card shadow border col-12" style="height: 12rem; position: relative;">
+                    <div class="card-header text-center">
+                        Sub Category
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="card-text">Manage subcategories under your main categories.</p>
+                        <div class="row justify-content-center position-absolute w-100" style="bottom: 10px;">
+                            <div class="col-10">
+                                <a href="/admin/SubCategory" class="btn btn-primary w-100">
+                                    Go to Sub Categories
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <h2 class="fw-bolder mb-4">Normal Rights</h2>
+
+        <!-- Category Card -->
+        <div class="col-md-4 col-12 mb-4 d-flex justify-content-center">
+            <div class="card shadow border col-12" style="height: 12rem; position: relative;">
+                <div class="card-header text-center">
+                    Category
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text">View categories.</p>
+                    <div class="row justify-content-center position-absolute w-100" style="bottom: 10px;">
+                        <div class="col-10">
+                            <a asp-controller="home" asp-action="CategoryIndex" class="btn btn-primary w-100">
+                                View Category
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Sub Category Card -->
+        <div class="col-md-4 col-12 mb-4 d-flex justify-content-center">
+            <div class="card shadow border col-12" style="height: 12rem; position: relative;">
+                <div class="card-header text-center">
+                    Sub Category
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text">View Sub Category.</p>
+                    <div class="row justify-content-center position-absolute w-100" style="bottom: 10px;">
+                        <div class="col-10">
+                            <a asp-controller="home" asp-action="SubCategoryIndex" class="btn btn-secondary w-100">
+                                View Sub Category
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requisition -->
+        <div class="col-md-4 col-12 mb-4 d-flex justify-content-center">
+            <div class="card shadow border col-12" style="height: 12rem; position: relative;">
+                <div class="card-header text-center">
+                    Requisition
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text">Manage requisitions and user roles.</p>
+                    <div class="row justify-content-center position-absolute w-100" style="bottom: 10px;">
+                        <div class="col-10">
+                            <a asp-controller="Requisition" asp-action="Index" class="btn btn-primary w-100">
+                                Go to Requisition
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-        <div class="col-md-9 col-12 text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-</div>
 </div>

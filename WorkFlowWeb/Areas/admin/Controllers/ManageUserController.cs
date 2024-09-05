@@ -211,7 +211,7 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
         }
 
 
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Block (string id)
         {
             if (id == null)
             {
@@ -227,15 +227,7 @@ namespace WorkFlowWeb.Areas.Admin.Controllers
             return View(applicationUser);
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var applicationUser = await _context.Users.FindAsync(id);
-            _context.Users.Remove(applicationUser);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+       
 
         public string GenerateEmailContent(string userName, string email)
          {
